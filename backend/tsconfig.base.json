@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@backend/core": ["libs/shared/core/src/index.ts"],
+      "@backend/helpers": ["libs/shared/helpers/src/index.ts"],
+      "@backend/user": ["libs/user/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
