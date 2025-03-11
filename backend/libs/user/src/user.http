@@ -1,0 +1,33 @@
+# Create a new user
+POST http://localhost:3000/api/user/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "user2",
+  "email": "use2@new.local",
+  "password": "123456hgffh",
+  "avatar": "avatar.png",
+  "gender": "мужской",
+  "dateOfBirth": "2012-02-23",
+  "description": "Keks",
+  "location": "Smith",
+  "backgroundImg": "bf2.png"
+}
+
+###
+
+# Get user by ID
+GET http://localhost:3000/api/user/f785eb10-a611-4d1c-8565-029228d5ae32 HTTP/1.1
+
+###
+
+# Login user by email and password
+POST http://localhost:3000/api/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "use2@new.local",
+  "password": "123456hgffh"
+}
+
+###

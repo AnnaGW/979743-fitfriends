@@ -1,4 +1,5 @@
 import { UserGender } from './user-gender.enum';
+import { UserLocation } from './user-location.enum';
 
 export interface User {
   id?: string;
@@ -6,8 +7,8 @@ export interface User {
   email: string;
   avatar?: string;
   gender: UserGender;
-  dateOfBirth: Date;
-  description: string;
-  location: string;
+  dateOfBirth?: Date;
+  description?: string;
+  location: UserLocation;
   backgroundImg: string;
 }

@@ -1,6 +1,7 @@
 import { genSalt, hash, compare } from 'bcrypt';
 import { AuthUser, Entity, StorableEntity, UserGender } from '@backend/core';
 import { SALT_ROUNDS } from './user.constant';
+import { UserLocation } from '@backend/core';
 
 export class UserEntity extends Entity implements StorableEntity<AuthUser> {
   public email: string;
@@ -8,9 +9,9 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
   public avatar?: string;
   public passwordHash: string;
   public gender: UserGender;
-  public dateOfBirth: Date;
-  public description: string;
-  public location: string;
+  public dateOfBirth?: Date;
+  public description?: string;
+  public location: UserLocation;
   public backgroundImg: string;
 
   constructor(user?: AuthUser) {
