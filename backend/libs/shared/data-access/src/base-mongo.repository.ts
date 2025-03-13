@@ -32,12 +32,12 @@ export abstract class BaseMongoRepository<
     return this.createEntityFromDocument(document);
   }
 
-  public async save(entity: T): Promise<void> {
+  public async save(entity: T): Promise<string> {
     const newEntity = new this.model(entity.toPOJO());
     await newEntity.save();
 
     entity.id = newEntity._id.toString();
-    // return entity.id;
+    return entity.id;
   }
 
   public async update(entity: T): Promise<void> {

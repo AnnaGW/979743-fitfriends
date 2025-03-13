@@ -62,10 +62,10 @@ export class UserService {
     }
 
     const userEntity = await new UserEntity(user).setPassword(password);
+    // console.log('before save - ', userEntity);
 
-    this.userRepository.save(userEntity);
-    //получение id из БД
-    console.log(userEntity.id);
+    await this.userRepository.save(userEntity);
+
     return userEntity;
   }
 
