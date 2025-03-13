@@ -6,23 +6,34 @@ import {
   MinLength,
   MaxLength,
   IsEnum,
+  Matches,
 } from 'class-validator';
 import { UserGender } from '@backend/core';
-import { AuthenticationValidateMessage } from '../user.constant';
+import {
+  AuthenticationValidateMessage,
+  UserDtoValidation,
+} from '../user.constant';
 import { UserLocation } from '@backend/core';
 
 export class CreateUserDto {
   @IsString()
+  @MinLength(UserDtoValidation.UserNameMinLength)
+  @MaxLength(UserDtoValidation.UserNameMaxLength)
   public name: string;
 
   @IsEmail({}, { message: AuthenticationValidateMessage.EmailNotValid })
   public email: string;
 
   @IsString()
+  @MinLength(UserDtoValidation.PasswordMinLength)
+  @MaxLength(UserDtoValidation.PasswordMaxLength)
   public password: string;
 
   @IsOptional()
   @IsString()
+  @Matches(/([^s]+(.(jpg|png))$)/, {
+    message: AuthenticationValidateMessage.AvatarFileTypeNotValid,
+  })
   public avatar?: string;
 
   @IsEnum(UserGender, {
@@ -37,6 +48,8 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsString()
+  @MinLength(UserDtoValidation.DescriptionMinLength)
+  @MaxLength(UserDtoValidation.DescriptionMaxLength)
   public description?: string;
 
   @IsEnum(UserLocation, {
@@ -46,5 +59,8 @@ export class CreateUserDto {
   public location: UserLocation;
 
   @IsString()
+  @Matches(/([^s]+(.(jpg|png))$)/, {
+    message: AuthenticationValidateMessage.BgImgFileTypeNotValid,
+  })
   public backgroundImg: string;
 }

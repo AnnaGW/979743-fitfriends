@@ -7,8 +7,6 @@ import { AuthUser, UserGender, UserLocation } from '@backend/core';
   timestamps: true,
 })
 export class UserModel extends Document implements AuthUser {
-  // public id: string; // TODO
-
   @Prop({
     required: true,
   })

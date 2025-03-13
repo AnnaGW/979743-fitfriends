@@ -49,7 +49,7 @@ export class UserService {
       avatar,
       gender,
       // dateBirth: dayjs(dateOfBirth).toDate(),
-      dateBirth: new Date(dateOfBirth),
+      dateOfBirth: new Date(dateOfBirth),
       description,
       location,
       backgroundImg,

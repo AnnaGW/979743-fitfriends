@@ -16,16 +16,20 @@ export const AuthenticationValidateMessage = {
   DateBirthNotValid: 'The user date birth is not valid',
   PasswordNotValid: 'The password is not valid',
   NotInUserGender:
-    'valid values ​​for this field are: "женский", "мужской", "неважно"',
+    'valid values ​​for field "gender" are: "женский", "мужской", "неважно"',
   NotInUserLocation:
-    'valid values ​​for this field are: «Пионерская», «Петроградская», «Удельная», «Звёздная», «Спортивная»',
+    'valid values ​​for field "location" are: «Пионерская», «Петроградская», «Удельная», «Звёздная», «Спортивная»',
+  BgImgFileTypeNotValid: 'valid file type for background image are .jpg or png',
+  AvatarFileTypeNotValid: 'valid file type for avatar are .jpg or png',
 } as const;
 
 export enum UserDtoValidation {
-  UserNameMinLength = 3,
-  UserNameMaxLength = 50,
+  UserNameMinLength = 1,
+  UserNameMaxLength = 15,
   PasswordMinLength = 6,
   PasswordMaxLength = 12,
+  DescriptionMinLength = 10,
+  DescriptionMaxLength = 140,
 }
 
 export const SALT_ROUNDS = 10;

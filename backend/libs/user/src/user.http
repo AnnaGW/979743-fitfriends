@@ -3,15 +3,15 @@ POST http://localhost:3000/api/user/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "user37",
-  "email": "use37@new.local",
-  "password": "1235",
-  "avatar": "avatar35.png",
+  "name": "us46",
+  "email": "use46@new.local",
+  "password": "1235fdb",
+  "avatar": "avatar43.jpg",
   "gender": "мужской",
-  "dateOfBirth": "2025-02-13",
-  "description": "Keks35",
+  "dateOfBirth": "2004-04-02",
+  "description": "Keks35efefeferf",
   "location": "Удельная",
-  "backgroundImg": "bf35.png"
+  "backgroundImg": "bf46.png"
 }
 
 ###
@@ -27,7 +27,7 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "use37@new.local",
+  "email": "use37",
   "password": "1235"
 }
 
