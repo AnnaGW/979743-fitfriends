@@ -13,6 +13,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
   public description?: string;
   public location: UserLocation;
   public backgroundImg: string;
+  public createdAt: Date;
 
   constructor(user?: AuthUser) {
     super();
@@ -23,7 +24,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
     if (!user) {
       return;
     }
-    this.id = user.id ?? ''; // TODO: this.id = user.id ?? '';
+    this.id = user.id ?? '';
     this.email = user.email;
     this.name = user.name;
     this.avatar = user.avatar;
@@ -33,6 +34,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
     this.description = user.description;
     this.location = user.location;
     this.backgroundImg = user.backgroundImg;
+    this.createdAt = user.createdAt; // возм, ?? текущая дата
   }
 
   public toPOJO(): AuthUser {
@@ -47,6 +49,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
       description: this.description,
       location: this.location,
       backgroundImg: this.backgroundImg,
+      createdAt: this.createdAt,
     };
   }
 

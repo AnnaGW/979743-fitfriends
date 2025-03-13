@@ -11,4 +11,5 @@ export interface User {
   description?: string;
   location: UserLocation;
   backgroundImg: string;
+  createdAt: Date;
 }

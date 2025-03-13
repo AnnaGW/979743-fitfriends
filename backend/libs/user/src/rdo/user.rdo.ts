@@ -27,4 +27,7 @@ export class UserRdo {
 
   @Expose()
   public backgroundImg: string;
+
+  @Expose()
+  public createdAt: string;
 }

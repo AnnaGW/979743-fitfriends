@@ -50,6 +50,11 @@ export class UserModel extends Document implements AuthUser {
     required: true,
   })
   public passwordHash: string;
+
+  @Prop({
+    required: true,
+  })
+  public createdAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserModel);

@@ -9,4 +9,13 @@ export class LoggedUserRdo {
 
   @Expose()
   public accessToken: string;
+
+  @Expose()
+  public name: string;
+
+  @Expose()
+  public dateOfBirth: string;
+
+  @Expose()
+  public createdAt: Date;
 }

@@ -8,7 +8,7 @@ import {
   UnauthorizedException,
   Logger,
 } from '@nestjs/common';
-// import dayjs from 'dayjs';
+// import dayjs from 'dayjs';  //TODO
 import { Token, TokenPayload, User } from '@backend/core';
 import { UserRepository } from './user.repository';
 import { UserEntity } from './user.entity';
@@ -48,11 +48,12 @@ export class UserService {
       passwordHash: '',
       avatar,
       gender,
-      // dateBirth: dayjs(dateOfBirth).toDate(),
+      // dateBirth: dayjs(dateOfBirth).toDate(), // TODO
       dateOfBirth: new Date(dateOfBirth),
       description,
       location,
       backgroundImg,
+      createdAt: new Date(),
     };
 
     const existUser = await this.userRepository.findByEmail(email);
@@ -62,7 +63,6 @@ export class UserService {
     }
 
     const userEntity = await new UserEntity(user).setPassword(password);
-    // console.log('before save - ', userEntity);
 
     await this.userRepository.save(userEntity);
 
