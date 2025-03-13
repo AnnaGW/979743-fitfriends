@@ -23,7 +23,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
     if (!user) {
       return;
     }
-    this.id = user.id; // TODO: this.id = user.id ?? '';
+    this.id = user.id ?? ''; // TODO: this.id = user.id ?? '';
     this.email = user.email;
     this.name = user.name;
     this.avatar = user.avatar;

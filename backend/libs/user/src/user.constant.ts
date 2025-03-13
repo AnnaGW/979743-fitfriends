@@ -13,7 +13,12 @@ export const AuthenticationResponseMessage = {
 
 export const AuthenticationValidateMessage = {
   EmailNotValid: 'The email is not valid',
+  DateBirthNotValid: 'The user date birth is not valid',
   PasswordNotValid: 'The password is not valid',
+  NotInUserGender:
+    'valid values ​​for this field are: "женский", "мужской", "неважно"',
+  NotInUserLocation:
+    'valid values ​​for this field are: «Пионерская», «Петроградская», «Удельная», «Звёздная», «Спортивная»',
 } as const;
 
 export enum UserDtoValidation {

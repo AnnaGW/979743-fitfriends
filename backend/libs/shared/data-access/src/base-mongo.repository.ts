@@ -19,9 +19,11 @@ export abstract class BaseMongoRepository<
       return null;
     }
 
-    const plainObject = document.toObject({ versionKey: false }) as ReturnType<
-      T['toPOJO']
-    >;
+    const plainObject = document.toObject({
+      getters: true,
+      versionKey: false,
+      flattenObjectIds: true,
+    }) as ReturnType<T['toPOJO']>;
     return this.entityFactory.create(plainObject);
   }
 
@@ -35,6 +37,7 @@ export abstract class BaseMongoRepository<
     await newEntity.save();
 
     entity.id = newEntity._id.toString();
+    // return entity.id;
   }
 
   public async update(entity: T): Promise<void> {
