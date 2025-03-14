@@ -7,3 +7,8 @@ export { UserLocation } from './types/user-location.enum';
 export { EntityFactory } from './interfaces/entity-factory.interface';
 export { TokenPayload } from './interfaces/token-payload.interface';
 export { Token } from './interfaces/token.interface';
+export { Training } from './types/training.interface';
+export { TrainingLevel } from './types/training-level.enum';
+export { TrainingType } from './types/training-type.enum';
+export { TrainingDuration } from './types/training-duration.enum';
+export { TrainingGender } from './types/training-gender.enum';
