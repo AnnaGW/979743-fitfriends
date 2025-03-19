@@ -3,18 +3,18 @@ POST http://localhost:3000/api/training/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "training3",
-  "backgroungImg": "bf48.png",
-  "level": "новичок",
-  "type": "йога",
-  "duration": "10-30 мин",
-  "price": 150,
-  "calories": 1001,
-  "description": "йога, индивидуальный подход",
-  "gender": "для женщин",
-  "video": "bf48.mp4",
-  "rating": 0,
-  "coach": "SuperCoach",
+  "title": "training5",
+  "backgroungImg": "bg05.png",
+  "level": "профессионал",
+  "type": "кроссфит",
+  "duration": "50-80 мин",
+  "price": 1700,
+  "calories": 3500,
+  "description": "кроссфит бла-бла-бла",
+  "gender": "для мужчин",
+  "video": "video0005.mp4",
+  "rating": 9,
+  "coach": "SuperCoach5",
   "specialOffer": false
 }
 

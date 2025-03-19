@@ -21,9 +21,7 @@ const validationSchema = Joi.object({
 function validateConfig(config: TrainingConfig): void {
   const { error } = validationSchema.validate(config, { abortEarly: true });
   if (error) {
-    throw new Error(
-      `[TrainingConfig Config Validation Error]: ${error.message}`
-    );
+    throw new Error(`[Training Config Validation Error]: ${error.message}`);
   }
 }
 
@@ -37,4 +35,4 @@ function getConfig(): TrainingConfig {
   return config;
 }
 
-export default registerAs('application', getConfig);
+export default registerAs('trainingapp', getConfig);
