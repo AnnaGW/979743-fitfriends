@@ -4,7 +4,7 @@ import applicationConfig from './app.config';
 import mongoConfig from './mongo.config';
 import jwtConfig from './jwt/jwt.config';
 
-const ENV_USERS_FILE_PATH = 'apps/fitfriends-back/user.env';
+const ENV_USERS_FILE_PATH = 'apps/users/user.env';
 
 @Module({
   imports: [

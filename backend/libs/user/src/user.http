@@ -3,22 +3,22 @@ POST http://localhost:3000/api/user/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "us48",
-  "email": "use48@new.local",
-  "password": "1235fdb",
-  "avatar": "avatar48.jpg",
+  "name": "us50",
+  "email": "use50@new.local",
+  "password": "12tyhtyhdb",
+  "avatar": "avatar50.jpg",
   "gender": "мужской",
   "dateOfBirth": "2004-04-03",
-  "description": "Keks35efefeferf",
+  "description": "Keks50 rtgrtg tgaryyth trr",
   "location": "Удельная",
-  "backgroundImg": "bf48.png"
+  "backgroundImg": "bf50png"
 }
 
 ###
 
 # Get user by ID
-GET http://localhost:3000/api/user/67d321a265c52bcc5be7ece6 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2QzMjFhMjY1YzUyYmNjNWJlN2VjZTYiLCJlbWFpbCI6InVzZTQ4QG5ldy5sb2NhbCIsIm5hbWUiOiJ1czQ4IiwiaWF0IjoxNzQxODkwNDMwLCJleHAiOjE3NDE4OTA3MzB9.SnZQd1gnhwe8XAAm3gkvMthIqKDAx6jI6hDvnZBao-g
+GET http://localhost:3000/api/user/67d315a10947eb2f04fa6087 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2RhOWNjYWNlNzE0NTI0NmUxZjI2YjgiLCJlbWFpbCI6InVzZTUwQG5ldy5sb2NhbCIsIm5hbWUiOiJ1czUwIiwiaWF0IjoxNzQyMzgwMzM2LCJleHAiOjE3NDIzODEyMzZ9.g4DItu_khYLjEejn2vRPubtbsegYzyugRICXikHcU1o
 
 ###
 
@@ -27,8 +27,8 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "use48@new.local",
-  "password": "1235fdb"
+  "email": "use50@new.local",
+  "password": "12tyhtyhdb"
 }
 
 ###
