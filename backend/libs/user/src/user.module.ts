@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { getJwtOptions } from '@backend/user-config';
 import { JwtAccessStrategy } from '@backend/user-config';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -20,6 +21,6 @@ import { JwtAccessStrategy } from '@backend/user-config';
   ],
   controllers: [UserController],
   providers: [UserService, UserRepository, UserFactory, JwtAccessStrategy],
-  exports: [UserRepository],
+  exports: [UserRepository, JwtAuthGuard],
 })
 export class UserModule {}

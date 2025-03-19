@@ -1,7 +1,11 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { TrainingRepository } from './training.repository';
 import { CreateTrainingDto } from './dto/create-training.dto';
 import { TrainingEntity } from './trainig.entity';
+import {
+  TRAINING_COLLECTION_IS_EMPTY,
+  TRAINING_NOT_FOUND,
+} from './training.constant';
 
 @Injectable()
 export class TrainingService {
@@ -13,5 +17,23 @@ export class TrainingService {
     const newTraining = new TrainingEntity(dto);
     await this.trainingRepository.save(newTraining);
     return newTraining;
+  }
+
+  public async getTraining(id: string): Promise<TrainingEntity> {
+    const training = await this.trainingRepository.findById(id);
+
+    if (!training) {
+      throw new NotFoundException(TRAINING_NOT_FOUND);
+    }
+
+    return training;
+  }
+
+  public async getTrainingCollection(): Promise<TrainingEntity[]> {
+    const collection = await this.trainingRepository.getCollection();
+    if (!collection) {
+      throw new NotFoundException(TRAINING_COLLECTION_IS_EMPTY);
+    }
+    return collection;
   }
 }

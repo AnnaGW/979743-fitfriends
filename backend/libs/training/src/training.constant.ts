@@ -1,3 +1,6 @@
+export const TRAINING_NOT_FOUND = 'Training not found';
+export const TRAINING_COLLECTION_IS_EMPTY = 'Training collection is empty';
+
 export enum TrainingDTOValidation {
   TitleMinLength = 1,
   TitleMaxLength = 15,

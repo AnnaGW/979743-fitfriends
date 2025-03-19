@@ -59,4 +59,9 @@ export abstract class BaseMongoRepository<
       throw new NotFoundException(`Entity with id ${id} not found.`);
     }
   }
+  public async getCollection(query?): Promise<T[]> {
+    const selection = await this.model.find().exec();
+    const collection = selection.map((tr) => this.createEntityFromDocument(tr));
+    return collection;
+  }
 }

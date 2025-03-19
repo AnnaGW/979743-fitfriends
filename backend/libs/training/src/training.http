@@ -21,11 +21,11 @@ Content-Type: application/json
 ###
 
 # Get array of trainings
+GET http://localhost:3000/api/training
 
 ###
 
-# Get user by ID
-GET http://localhost:3000/api/user/67d321a265c52bcc5be7ece6 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2QzMjFhMjY1YzUyYmNjNWJlN2VjZTYiLCJlbWFpbCI6InVzZTQ4QG5ldy5sb2NhbCIsIm5hbWUiOiJ1czQ4IiwiaWF0IjoxNzQxODkwNDMwLCJleHAiOjE3NDE4OTA3MzB9.SnZQd1gnhwe8XAAm3gkvMthIqKDAx6jI6hDvnZBao-g
+# Get training by ID
+GET http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
 
 ###

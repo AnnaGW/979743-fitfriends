@@ -17,9 +17,4 @@ export class TrainingRepository extends BaseMongoRepository<
   ) {
     super(entityFactory, trainingModel);
   }
-
-  public async findById(id: string): Promise<TrainingEntity | null> {
-    const document = await this.model.findOne({ id }).exec();
-    return this.createEntityFromDocument(document);
-  }
 }
