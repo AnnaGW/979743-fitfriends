@@ -1,0 +1,20 @@
+{
+  "name": "training-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/training-config/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/training-config",
+        "tsConfig": "libs/training-config/tsconfig.lib.json",
+        "packageJson": "libs/training-config/package.json",
+        "main": "libs/training-config/src/index.ts",
+        "assets": ["libs/training-config/*.md"]
+      }
+    }
+  }
+}

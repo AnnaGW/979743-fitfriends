@@ -1,6 +1,5 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
@@ -14,11 +13,10 @@ async function bootstrap() {
     })
   );
 
-  const configService = app.get(ConfigService);
-  const port = configService.get('application.port');
+  const port = process.env.PORT || 3000;
   await app.listen(port);
   Logger.log(
-    `🚀 Application Users is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Application Trainings is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 

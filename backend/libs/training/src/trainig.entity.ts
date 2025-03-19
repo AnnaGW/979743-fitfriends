@@ -23,9 +23,9 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
   public coach: string;
   public specialOffer: boolean;
 
-  constructor(trainig?: Training) {
+  constructor(training?: Training) {
     super();
-    this.populate(trainig);
+    this.populate(training);
   }
 
   public populate(trainig?: Training): void {
@@ -33,16 +33,16 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
     this.title = trainig.title;
     this.backgroungImg = trainig.backgroungImg;
     this.level = trainig.level;
-    this.type = this.type;
-    this.duration = this.duration;
-    this.price = this.price;
-    this.calories = this.calories;
-    this.description = this.description;
-    this.gender = this.gender;
-    this.video = this.video;
-    this.rating = this.rating;
-    this.coach = this.coach;
-    this.specialOffer = this.specialOffer;
+    this.type = trainig.type;
+    this.duration = trainig.duration;
+    this.price = trainig.price;
+    this.calories = trainig.calories;
+    this.description = trainig.description;
+    this.gender = trainig.gender;
+    this.video = trainig.video;
+    this.rating = trainig.rating;
+    this.coach = trainig.coach;
+    this.specialOffer = trainig.specialOffer;
   }
 
   public toPOJO(): Training {

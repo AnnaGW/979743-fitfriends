@@ -1,5 +1,5 @@
 {
-  "name": "@backend/training",
+  "name": "@backend/training-config",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",

@@ -1,7 +1,7 @@
 {
-  "name": "trainig",
+  "name": "training",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/trainig/src",
+  "sourceRoot": "libs/training/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,11 +9,11 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/trainig",
-        "tsConfig": "libs/trainig/tsconfig.lib.json",
-        "packageJson": "libs/trainig/package.json",
-        "main": "libs/trainig/src/index.ts",
-        "assets": ["libs/trainig/*.md"]
+        "outputPath": "dist/libs/training",
+        "tsConfig": "libs/training/tsconfig.lib.json",
+        "packageJson": "libs/training/package.json",
+        "main": "libs/training/src/index.ts",
+        "assets": ["libs/training/*.md"]
       }
     }
   }
