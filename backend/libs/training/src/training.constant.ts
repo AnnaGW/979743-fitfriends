@@ -1,3 +1,5 @@
+import { SortDirection } from '@backend/core';
+
 export const TRAINING_NOT_FOUND = 'Training not found';
 export const TRAINING_COLLECTION_IS_EMPTY = 'Training collection is empty';
 
@@ -19,3 +21,7 @@ export enum TrainingValidateMessage {
   VideoFileTypeIsNotValid = 'valid file type for video are .mov, .avi or mp4',
   CoachNameIsNotValid = 'valid value ​​for field coach is letters of Russian/English alphabet only',
 }
+
+export const DEFAULT_TRAINING_COUNT_LIMIT = 50;
+export const DEFAULT_SORT_DIRECTION = SortDirection.Decrease;
+export const DEFAULT_PAGE_COUNT = 1;

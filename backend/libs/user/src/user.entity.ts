@@ -34,7 +34,7 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
     this.description = user.description;
     this.location = user.location;
     this.backgroundImg = user.backgroundImg;
-    this.createdAt = user.createdAt; // возм, ?? текущая дата
+    this.createdAt = user.createdAt; // возм, ?? текущая дата //TODO
   }
 
   public toPOJO(): AuthUser {

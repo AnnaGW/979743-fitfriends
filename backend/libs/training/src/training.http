@@ -3,19 +3,19 @@ POST http://localhost:3000/api/training/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "training5",
-  "backgroungImg": "bg05.png",
+  "title": "training6",
+  "backgroungImg": "bg06.png",
   "level": "профессионал",
   "type": "кроссфит",
   "duration": "50-80 мин",
-  "price": 1700,
-  "calories": 3500,
+  "price": 1350,
+  "calories": 2500,
   "description": "кроссфит бла-бла-бла",
-  "gender": "для мужчин",
-  "video": "video0005.mp4",
-  "rating": 9,
-  "coach": "SuperCoach5",
-  "specialOffer": false
+  "gender": "для всех",
+  "video": "video0006.mp4",
+  "rating": 5,
+  "coach": "SuperCoach6",
+  "specialOffer": true
 }
 
 ###

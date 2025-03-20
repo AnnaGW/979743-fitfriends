@@ -18,4 +18,5 @@ export interface Training {
   rating: number;
   coach: string;
   specialOffer: boolean;
+  createdAt: Date;
 }

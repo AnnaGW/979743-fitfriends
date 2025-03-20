@@ -12,3 +12,5 @@ export { TrainingLevel } from './types/training-level.enum';
 export { TrainingType } from './types/training-type.enum';
 export { TrainingDuration } from './types/training-duration.enum';
 export { TrainingGender } from './types/training-gender.enum';
+export { SortDirection } from './interfaces/sort-direction.interface';
+export { PaginationResult } from './interfaces/pagination.interface';

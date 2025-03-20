@@ -1,7 +1,12 @@
-import { Document, Model } from 'mongoose';
+import { Document, Model, RootFilterQuery } from 'mongoose';
 import { NotFoundException } from '@nestjs/common';
 
-import { Entity, StorableEntity, EntityFactory } from '@backend/core';
+import {
+  Entity,
+  StorableEntity,
+  EntityFactory,
+  SortDirection,
+} from '@backend/core';
 import { Repository } from './repository.interface';
 
 export abstract class BaseMongoRepository<
@@ -59,8 +64,11 @@ export abstract class BaseMongoRepository<
       throw new NotFoundException(`Entity with id ${id} not found.`);
     }
   }
-  public async getCollection(query?): Promise<T[]> {
-    const selection = await this.model.find().exec();
+  public async getCollection(filter?: RootFilterQuery<T>): Promise<T[]> {
+    const selection = await this.model
+      .find(filter)
+      .sort({ createdAt: -1 })
+      .exec();
     const collection = selection.map((tr) => this.createEntityFromDocument(tr));
     return collection;
   }

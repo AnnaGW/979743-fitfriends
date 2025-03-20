@@ -86,6 +86,11 @@ export class TrainingModel extends Document implements Training {
     required: true,
   })
   public specialOffer: boolean;
+
+  @Prop({
+    required: true,
+  })
+  public createdAt: Date;
 }
 
 export const TrainingSchema = SchemaFactory.createForClass(TrainingModel);

@@ -22,6 +22,7 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
   public rating: number;
   public coach: string;
   public specialOffer: boolean;
+  public createdAt: Date;
 
   constructor(training?: Training) {
     super();
@@ -43,6 +44,7 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
     this.rating = trainig.rating;
     this.coach = trainig.coach;
     this.specialOffer = trainig.specialOffer;
+    this.createdAt = trainig.createdAt;
   }
 
   public toPOJO(): Training {
@@ -61,6 +63,7 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
       rating: this.rating,
       coach: this.coach,
       specialOffer: this.specialOffer,
+      createdAt: this.createdAt,
     };
   }
 }

@@ -42,4 +42,7 @@ export class TrainingRdo {
 
   @Expose()
   public specialOffer: string;
+
+  @Expose()
+  public createdAt: string;
 }
