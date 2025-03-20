@@ -3,39 +3,38 @@ POST http://localhost:3000/api/training/create HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "training6",
-  "backgroungImg": "bg06.png",
-  "level": "профессионал",
-  "type": "кроссфит",
-  "duration": "50-80 мин",
-  "price": 1350,
-  "calories": 2500,
-  "description": "кроссфит бла-бла-бла",
-  "gender": "для всех",
-  "video": "video0006.mp4",
-  "rating": 5,
-  "coach": "SuperCoach6",
-  "specialOffer": true
+  "title": "training12",
+  "backgroungImg": "bg012.png",
+  "level": "новичок",
+  "type": "пилатес",
+  "duration": "10-30 мин",
+  "price": 1000,
+  "calories": 1200,
+  "description": "тянись далеко",
+  "gender": "для женщин",
+  "video": "video00012.mp4",
+  "coach": "Superавамвм",
+  "specialOffer": false
 }
 
 ###
 
 # Get training by ID
-GET http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
+GET http://localhost:3000/api/training/67dc5e5f529ae73a51ceb854
 
 ###
 
-# Delete publication
-DELETE http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
+# Delete training
+DELETE http://localhost:3000/api/training/67dc60790e227ff19e1d522d
 
 ###
 
-# Update publication
-PATCH http://localhost:3000/api/training/67dbe403074595c508baea1c
+# Update training
+PATCH http://localhost:3000/api/training/67dc60790e227ff19e1d522d
 Content-Type: application/json
 
 {
-  "title": "тренировка 12"
+  "rating": [0, 5, 4, 5, 5]
 }
 
 ###

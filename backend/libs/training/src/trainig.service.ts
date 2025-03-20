@@ -14,7 +14,10 @@ export class TrainingService {
 
   constructor(private readonly trainingRepository: TrainingRepository) {}
 
-  public async createTraining(dto: CreateTrainingDto): Promise<TrainingEntity> {
+  public async createTraining(dto: CreateTrainingDto): Promise<{
+    training: TrainingEntity;
+    ratingCount: number;
+  }> {
     const {
       title,
       backgroungImg,
@@ -26,7 +29,6 @@ export class TrainingService {
       description,
       gender,
       video,
-      rating,
       coach,
       specialOffer,
     } = dto;
@@ -42,7 +44,7 @@ export class TrainingService {
       description,
       gender,
       video,
-      rating,
+      rating: [0],
       coach,
       specialOffer,
       createdAt: new Date(),
@@ -50,23 +52,34 @@ export class TrainingService {
 
     const newTraining = new TrainingEntity(training);
     await this.trainingRepository.save(newTraining);
-    return newTraining;
+
+    const ratingCount =
+      training.rating.reduce((a, b) => a + b) / training.rating.length;
+    return { training: newTraining, ratingCount };
   }
 
-  public async getTraining(id: string): Promise<TrainingEntity> {
+  public async getTraining(id: string): Promise<{
+    training: TrainingEntity;
+    ratingCount: number;
+  }> {
     const training = await this.trainingRepository.findById(id);
 
     if (!training) {
       throw new NotFoundException(TRAINING_NOT_FOUND);
     }
 
-    return training;
+    const ratingCount =
+      training.rating.reduce((a, b) => a + b) / training.rating.length;
+    return { training, ratingCount };
   }
 
   public async updateTraining(
     dto: UpdateTrainingDto,
     id: string
-  ): Promise<TrainingEntity> {
+  ): Promise<{
+    training: TrainingEntity;
+    ratingCount: number;
+  }> {
     const training = (await this.trainingRepository.findById(id)).toPOJO();
 
     if (!training) {
@@ -79,9 +92,12 @@ export class TrainingService {
       lastEditDate: new Date(),
     };
     const editedTrainingEntity = new TrainingEntity(editedTraining);
-    this.trainingRepository.update(editedTrainingEntity);
+    await this.trainingRepository.update(editedTrainingEntity);
 
-    return editedTrainingEntity;
+    const ratingCount =
+      training.rating.reduce((a, b) => a + b) / training.rating.length;
+
+    return { training: editedTrainingEntity, ratingCount };
   }
 
   public async deleteTraining(id: string) {
@@ -92,14 +108,25 @@ export class TrainingService {
     }
   }
 
-  public async getTrainingCollection(): Promise<TrainingEntity[]> {
+  public async getTrainingCollection(): Promise<
+    {
+      training: TrainingEntity;
+      ratingCount: number;
+    }[]
+  > {
     // const collection = await this.trainingRepository.getCollection({
     //   level: 'новичок', // должно прилетать из контроллера
-    // });
+    // }); // TODO
     const collection = await this.trainingRepository.getCollection();
     if (!collection) {
       throw new NotFoundException(TRAINING_COLLECTION_IS_EMPTY);
     }
-    return collection;
+
+    const adaptedCollection = collection.map((tr) => ({
+      training: tr,
+      ratingCount: tr.rating.reduce((a, b) => a + b) / tr.rating.length,
+    }));
+
+    return adaptedCollection;
   }
 }

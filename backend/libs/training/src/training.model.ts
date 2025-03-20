@@ -75,7 +75,7 @@ export class TrainingModel extends Document implements Training {
   @Prop({
     required: true,
   })
-  public rating: number;
+  public rating: number[];
 
   @Prop({
     required: true,

@@ -76,16 +76,12 @@ export class CreateTrainingDto {
   })
   public video: string;
 
-  @IsNumber()
-  public rating: number;
-
   @IsString()
   @MinLength(TrainingDTOValidation.CoachnMinLength)
   @MaxLength(TrainingDTOValidation.CoachMaxLength)
-  // @Matches(/([А-Яа-яЁёa-zA-Z] $)/, {
-  //TODO проверить RegExp
-  //   message: TrainingValidateMessage.CoachNameIsNotValid,
-  // })
+  @Matches(/^[А-Яа-яЁёa-zA-Z]+$/, {
+    message: TrainingValidateMessage.CoachNameIsNotValid,
+  })
   public coach: string;
 
   @IsBoolean()

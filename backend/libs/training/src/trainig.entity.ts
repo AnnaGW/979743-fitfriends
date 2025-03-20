@@ -19,7 +19,7 @@ export class TrainingEntity extends Entity implements StorableEntity<Training> {
   public description: string;
   public gender: TrainingGender;
   public video: string;
-  public rating: number;
+  public rating: number[];
   public coach: string;
   public specialOffer: boolean;
   public createdAt: Date;

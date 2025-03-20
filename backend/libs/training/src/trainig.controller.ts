@@ -23,14 +23,20 @@ export class TrainingController {
   @Post('create')
   public async create(@Body() dto: CreateTrainingDto) {
     const newTraining = await this.trainingService.createTraining(dto);
-    return fillDto(TrainingRdo, { ...newTraining.toPOJO() });
+    return fillDto(TrainingRdo, {
+      ...newTraining.training.toPOJO(),
+      rating: +newTraining.ratingCount.toFixed(2),
+    });
   }
 
   // @UseGuards(JwtAuthGuard)
   @Get(':id')
   public async show(@Param('id', MongoIdValidationPipe) id: string) {
     const existTraining = await this.trainingService.getTraining(id);
-    return existTraining.toPOJO();
+    return fillDto(TrainingRdo, {
+      ...existTraining.training.toPOJO(),
+      rating: +existTraining.ratingCount.toFixed(2),
+    });
   }
 
   @Patch(':id')
@@ -39,7 +45,10 @@ export class TrainingController {
     @Body() dto: UpdateTrainingDto
   ) {
     const editedTraining = await this.trainingService.updateTraining(dto, id);
-    return editedTraining.toPOJO();
+    return fillDto(TrainingRdo, {
+      ...editedTraining.training.toPOJO(),
+      rating: +editedTraining.ratingCount.toFixed(2),
+    });
   }
 
   @Delete(':id')
@@ -51,6 +60,9 @@ export class TrainingController {
   public async getSelection() {
     const selectedTrainings =
       await this.trainingService.getTrainingCollection();
-    return selectedTrainings.map((tr) => tr.toPOJO());
+    return selectedTrainings.map((tr) => ({
+      ...tr.training.toPOJO(),
+      rating: +tr.ratingCount.toFixed(2),
+    }));
   }
 }

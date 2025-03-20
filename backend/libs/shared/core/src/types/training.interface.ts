@@ -15,7 +15,7 @@ export interface Training {
   description: string;
   gender: TrainingGender;
   video: string;
-  rating: number;
+  rating: number[];
   coach: string;
   specialOffer: boolean;
   createdAt: Date;
