@@ -20,12 +20,27 @@ Content-Type: application/json
 
 ###
 
-# Get array of trainings
-GET http://localhost:3000/api/training
+# Get training by ID
+GET http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
 
 ###
 
-# Get training by ID
-GET http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
+# Delete publication
+DELETE http://localhost:3000/api/training/67dabe1fa27d92116d5e2735
+
+###
+
+# Update publication
+PATCH http://localhost:3000/api/training/67dbe403074595c508baea1c
+Content-Type: application/json
+
+{
+  "title": "тренировка 12"
+}
+
+###
+
+# Get training list
+GET http://localhost:3000/api/training
 
 ###

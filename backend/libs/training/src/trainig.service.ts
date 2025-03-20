@@ -6,6 +6,7 @@ import {
   TRAINING_COLLECTION_IS_EMPTY,
   TRAINING_NOT_FOUND,
 } from './training.constant';
+import { UpdateTrainingDto } from './dto/update-training.dto';
 
 @Injectable()
 export class TrainingService {
@@ -60,6 +61,35 @@ export class TrainingService {
     }
 
     return training;
+  }
+
+  public async updateTraining(
+    dto: UpdateTrainingDto,
+    id: string
+  ): Promise<TrainingEntity> {
+    const training = (await this.trainingRepository.findById(id)).toPOJO();
+
+    if (!training) {
+      throw new NotFoundException(TRAINING_NOT_FOUND);
+    }
+
+    const editedTraining = {
+      ...training,
+      ...dto,
+      lastEditDate: new Date(),
+    };
+    const editedTrainingEntity = new TrainingEntity(editedTraining);
+    this.trainingRepository.update(editedTrainingEntity);
+
+    return editedTrainingEntity;
+  }
+
+  public async deleteTraining(id: string) {
+    try {
+      this.trainingRepository.deleteById(id);
+    } catch {
+      throw new NotFoundException(TRAINING_NOT_FOUND);
+    }
   }
 
   public async getTrainingCollection(): Promise<TrainingEntity[]> {
