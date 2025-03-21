@@ -14,3 +14,5 @@ export { TrainingDuration } from './types/training-duration.enum';
 export { TrainingGender } from './types/training-gender.enum';
 export { SortDirection } from './interfaces/sort-direction.interface';
 export { PaginationResult } from './interfaces/pagination.interface';
+export { JwtToken } from './interfaces/jwt-token.interface';
+export { RefreshTokenPayload } from './interfaces/refresh-token-payload.interface';

@@ -9,7 +9,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { getJwtOptions } from '@backend/user-config';
 import { JwtAccessStrategy } from '@backend/user-config';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { JwtRefreshStrategy } from './jwt/jwt-refresh.strategy';
+import { RefreshTokenModule } from './refresh-token-module/refresh-token.module';
 
 @Module({
   imports: [
@@ -18,9 +19,16 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
       inject: [ConfigService],
       useFactory: getJwtOptions,
     }),
+    RefreshTokenModule,
   ],
   controllers: [UserController],
-  providers: [UserService, UserRepository, UserFactory, JwtAccessStrategy],
-  exports: [UserRepository, JwtAuthGuard],
+  providers: [
+    UserService,
+    UserRepository,
+    UserFactory,
+    JwtAccessStrategy,
+    JwtRefreshStrategy,
+  ],
+  exports: [UserRepository],
 })
 export class UserModule {}

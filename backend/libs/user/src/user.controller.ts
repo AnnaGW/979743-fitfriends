@@ -4,8 +4,10 @@ import {
   Post,
   Get,
   Param,
-  HttpStatus,
+  Req,
   UseGuards,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { MongoIdValidationPipe } from '@backend/pipes';
 import { UserService } from './user.service';
@@ -15,6 +17,8 @@ import { LoggedUserRdo } from './rdo/logged-user.rdo';
 import { UserRdo } from './rdo/user.rdo';
 import { fillDto } from '@backend/helpers';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
+import { RequestWithUser } from './request-with-user.interface';
 
 @Controller('user')
 export class UserController {
@@ -38,5 +42,12 @@ export class UserController {
   public async show(@Param('id', MongoIdValidationPipe) id: string) {
     const existUser = await this.userService.getUser(id);
     return existUser.toPOJO();
+  }
+
+  @UseGuards(JwtRefreshGuard)
+  @Post('refresh')
+  @HttpCode(HttpStatus.OK)
+  public async refreshToken(@Req() { user }: RequestWithUser) {
+    return this.userService.createUserToken(user);
   }
 }
