@@ -19,6 +19,7 @@ import { fillDto } from '@backend/helpers';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
 import { RequestWithUser } from './request-with-user.interface';
+import { RequestWithTokenPayload } from './request-with-token-payload.interface';
 
 @Controller('user')
 export class UserController {
@@ -49,5 +50,11 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   public async refreshToken(@Req() { user }: RequestWithUser) {
     return this.userService.createUserToken(user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('check')
+  public async checkToken(@Req() { user: payload }: RequestWithTokenPayload) {
+    return payload;
   }
 }

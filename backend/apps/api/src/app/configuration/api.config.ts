@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 
 export enum ApplicationServiceURL {
   Users = 'http://localhost:3333/api/user',
-  Trainings = 'http://localhost:3334/api/posts', //TODO: вынести в .env
+  Trainings = 'http://localhost:3334/api/training/create', //TODO: вынести в .env
 }
 
 export const HTTP_CLIENT_MAX_REDIRECTS = 5;

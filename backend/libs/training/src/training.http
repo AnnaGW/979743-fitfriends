@@ -1,5 +1,5 @@
 # Create a new training
-POST http://localhost:3000/api/training/create HTTP/1.1
+POST http://localhost:3334/api/training/create HTTP/1.1
 Content-Type: application/json
 
 {
@@ -20,17 +20,17 @@ Content-Type: application/json
 ###
 
 # Get training by ID
-GET http://localhost:3000/api/training/67dc5e5f529ae73a51ceb854
+GET http://localhost:3334/api/training/67dc5e5f529ae73a51ceb854
 
 ###
 
 # Delete training
-DELETE http://localhost:3000/api/training/67dc60790e227ff19e1d522d
+DELETE http://localhost:3334/api/training/67dc60790e227ff19e1d522d
 
 ###
 
 # Update training
-PATCH http://localhost:3000/api/training/67dc60790e227ff19e1d522d
+PATCH http://localhost:3334/api/training/67dc60790e227ff19e1d522d
 Content-Type: application/json
 
 {
@@ -40,6 +40,6 @@ Content-Type: application/json
 ###
 
 # Get training list
-GET http://localhost:3000/api/training
+GET http://localhost:3334/api/training
 
 ###
