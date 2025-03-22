@@ -3,7 +3,7 @@ import { Body, Controller, Post, Req } from '@nestjs/common';
 
 import { LoginUserDto } from '@backend/user';
 
-import { ApplicationServiceURL } from './app.config';
+import { ApplicationServiceURL } from './configuration/api.config';
 
 @Controller('users-api')
 export class UsersApiController {
