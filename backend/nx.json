@@ -40,7 +40,8 @@
       "exclude": [
         "apps/fitfriends-back-e2e/**/*",
         "apps/trainings-e2e/**/*",
-        "apps/users-e2e/**/*"
+        "apps/users-e2e/**/*",
+        "apps/api-e2e/**/*"
       ]
     }
   ],
