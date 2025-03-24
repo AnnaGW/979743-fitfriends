@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 function Intro(): JSX.Element {
   return (
@@ -26,12 +27,7 @@ function Intro(): JSX.Element {
               </picture>
             </div>
             <div className="intro__wrapper">
-              <svg
-                className="intro__icon"
-                width="60"
-                height="60"
-                aria-hidden="true"
-              >
+              <svg className="intro__icon" width="60" height="60" aria-hidden="true">
                 <use xlinkHref="#icon-logotype"></use>
               </svg>
               <div className="intro__title-logo">
@@ -55,7 +51,7 @@ function Intro(): JSX.Element {
                 </button>
                 <p className="intro__text">
                   Есть аккаунт?{' '}
-                  <Link className="intro__link" to="#">
+                  <Link className="intro__link" to={AppRoute.Login}>
                     Вход
                   </Link>
                 </p>

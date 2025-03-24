@@ -1,6 +1,20 @@
 import {Helmet} from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import { FormEvent } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { AppRoute } from '../../const';
+import { userInfo } from '../../store/action';
 
 function Login(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onClickHandler = (evt: FormEvent<HTMLElement>) => {
+    evt.preventDefault();
+    dispatch(userInfo());
+    navigate(AppRoute.Main);
+  };
+
   return (
     <>
       <Helmet>
@@ -51,7 +65,7 @@ function Login(): JSX.Element {
                           </span>
                         </label>
                       </div>
-                      <button className="btn sign-in__button" type="submit">
+                      <button className="btn sign-in__button" type="submit" onClick={onClickHandler}>
                         Продолжить
                       </button>
                     </div>

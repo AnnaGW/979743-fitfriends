@@ -1,3 +1,17 @@
+export enum UserLocation {
+  Pioneer = 'Пионерская',
+  Petrogradskaya = 'Петроградская',
+  Udelnaya = 'Удельная',
+  Starry = 'Звездная',
+  Sports = 'Спортивная',
+}
+
+export enum UserGender {
+  Male = 'мужской',
+  Female = 'женский',
+  Unimportant = 'не важно',
+}
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
