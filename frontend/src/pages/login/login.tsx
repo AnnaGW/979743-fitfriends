@@ -1,19 +1,20 @@
 import {Helmet} from 'react-helmet-async';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormEvent } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { AppRoute } from '../../const';
-import { userInfo } from '../../store/action';
+import LoginForm from '../../components/forms/form-login';
+import { AuthorizationStatus } from '../../const';
 
 function Login(): JSX.Element {
-  const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const navigate = useNavigate();
 
-  const onClickHandler = (evt: FormEvent<HTMLElement>) => {
-    evt.preventDefault();
-    dispatch(userInfo());
-    navigate(AppRoute.Main);
-  };
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
+  },[authorizationStatus, navigate]);
 
   return (
     <>
@@ -47,29 +48,7 @@ function Login(): JSX.Element {
                   <h1 className="popup-form__title">Вход</h1>
                 </div>
                 <div className="popup-form__form">
-                  <form method="get">
-                    <div className="sign-in">
-                      <div className="custom-input sign-in__input">
-                        <label>
-                          <span className="custom-input__label">E-mail</span>
-                          <span className="custom-input__wrapper">
-                            <input type="email" name="email" />
-                          </span>
-                        </label>
-                      </div>
-                      <div className="custom-input sign-in__input">
-                        <label>
-                          <span className="custom-input__label">Пароль</span>
-                          <span className="custom-input__wrapper">
-                            <input type="password" name="password" />
-                          </span>
-                        </label>
-                      </div>
-                      <button className="btn sign-in__button" type="submit" onClick={onClickHandler}>
-                        Продолжить
-                      </button>
-                    </div>
-                  </form>
+                  <LoginForm />
                 </div>
               </div>
             </div>

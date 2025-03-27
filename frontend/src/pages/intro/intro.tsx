@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
 function Intro(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <>
       <Helmet>
@@ -46,7 +48,7 @@ function Intro(): JSX.Element {
                 </picture>
               </div>
               <div className="intro__buttons">
-                <button className="btn intro__button" type="button">
+                <button className="btn intro__button" type="button" onClick={() => navigate(AppRoute.Registration, { replace: false })}>
                   Регистрация
                 </button>
                 <p className="intro__text">

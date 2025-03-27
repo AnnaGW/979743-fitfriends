@@ -26,13 +26,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const BASE_URL = 'http://localhost:3000/api'; //TODO: порт передать через переменные окружения
+export const BACKEND_URL = 'http://localhost:4000/api'; //TODO: передать через env, порты в запросах будут разные
 
 export const REQUEST_TIMEOUT = 5000;
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
-export const AUTH_TOKEN_KEY_NAME = 'guitar-shop-token';
+export const AUTH_TOKEN_KEY_NAME = 'fitfriends-token';
 
 export enum NameSpace {
   Auth = 'AUTH', // действия, связанные с авторизацией
@@ -42,6 +42,9 @@ export enum NameSpace {
 }
 
 export enum APIRoute {
-  Login = 'auth/login',
-  Registration = 'auth/register',
+  Login = 'user/login',
+  Registration = 'user/register',
 }
+
+export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
+export const EMAIL_PATTERN = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;

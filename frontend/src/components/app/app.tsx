@@ -5,6 +5,8 @@ import MainPage from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
+import Registration from '../../pages/registration/registration';
+import Error404 from '../../pages/error/error';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -16,14 +18,17 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.Main}
             element={
-              <PrivateRoute
-                authorizationStatus={authorizationStatus}
-              >
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MainPage />
               </PrivateRoute>
             }
           />
+
           <Route path={AppRoute.Login} element={<Login />} />
+
+          <Route path={AppRoute.Registration} element={<Registration />} />
+
+          <Route path='*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

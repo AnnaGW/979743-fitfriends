@@ -11,4 +11,5 @@ export type TUser = {
   location: UserLocation;
   backgroundImg: string;
   createdAt: Date;
+  refreshToken: string;
 };
