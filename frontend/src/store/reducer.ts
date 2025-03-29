@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, UserGender, UserLocation } from '../const';
 import { TAuthProcess } from '../types/state';
-import { userInfo, requireAuthorization, serverError } from './action';
+import { userInfo, setAuthorizationAction, serverErrorAction } from './action';
 import { loginAction } from './api-actions';
 
 const initialState: TAuthProcess = {
@@ -12,34 +12,36 @@ const initialState: TAuthProcess = {
     email: '',
     avatar: '',
     gender: UserGender.Unimportant,
-    dateOfBirth: new Date(),
+    createdAt: new Date().toISOString(),
+    dateOfBirth: new Date().toISOString(),
     description: '',
     location: UserLocation.Starry,
     backgroundImg: '',
-    createdAt: new Date(),
     refreshToken: '',
+    accessToken: '',
   },
   error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(userInfo, (state) => {
-      state.authorizationStatus = AuthorizationStatus.Auth;
-    })
-    .addCase(requireAuthorization, (state, action) => {
+    .addCase(setAuthorizationAction, (state, action) => {
       state.authorizationStatus = action.payload;
     })
-    .addCase(serverError, (state, action) => {
+    .addCase(userInfo, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+      state.userInfo = action.payload;
+    })
+    .addCase(loginAction.fulfilled, (state, action) => {
+      state.userInfo = action.payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(loginAction.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(serverErrorAction, (state, action) => {
       state.error = action.payload;
     });
-  // .addCase(loginAction.fulfilled, (state, action) => {
-  //   state.userInfo = action.payload;
-  //   state.authorizationStatus = AuthorizationStatus.Auth;
-  // });
-  // .addCase(loginAction.rejected, (state) => {
-  //   state.authorizationStatus = AuthorizationStatus.NoAuth;
-  // });
 });
 
 export { reducer };

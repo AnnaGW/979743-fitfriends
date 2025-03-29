@@ -1,6 +1,7 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import cors from 'cors';
 import { AppModule } from './app/app.module';
 import { RequestIdInterceptor } from '@backend/interceptors';
 
@@ -13,6 +14,13 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
+    })
+  );
+
+  app.use(
+    cors({
+      credentials: true,
+      origin: true,
     })
   );
 

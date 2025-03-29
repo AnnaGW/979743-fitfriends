@@ -30,7 +30,7 @@ export const BACKEND_URL = 'http://localhost:4000/api'; //TODO: передать
 
 export const REQUEST_TIMEOUT = 5000;
 
-export const TIMEOUT_SHOW_ERROR = 2000;
+export const TIMEOUT_SHOW_ERROR = 3000;
 
 export const AUTH_TOKEN_KEY_NAME = 'fitfriends-token';
 
@@ -42,8 +42,8 @@ export enum NameSpace {
 }
 
 export enum APIRoute {
-  Login = 'user/login',
-  Registration = 'user/register',
+  Login = 'users-api/login',
+  Registration = 'users-api/register',
 }
 
 export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;

@@ -6,10 +6,11 @@ export type TUser = {
   email: string;
   avatar?: string;
   gender: UserGender;
-  dateOfBirth?: Date;
+  dateOfBirth?: string;
   description?: string;
   location: UserLocation;
   backgroundImg: string;
-  createdAt: Date;
+  createdAt: string;
   refreshToken: string;
+  accessToken: string;
 };

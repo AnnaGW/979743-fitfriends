@@ -1,36 +1,34 @@
-// import { useNavigate } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { PASSWORD_PATTERN, EMAIL_PATTERN } from '../../const';
+// import { checkAuthorization, userInfo } from '../../store/action';
+// import { AuthorizationStatus, UserGender, UserLocation } from '../../const';
+import { PASSWORD_PATTERN, EMAIL_PATTERN, AppRoute } from '../../const';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm(): JSX.Element {
   const [login, setLogin] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log('form value - ', login, password);
-    if (login !== null && password !== null) {
-      if (password.match(PASSWORD_PATTERN) && login.match(EMAIL_PATTERN)) {
-        dispatch(loginAction({
-          login: login,
-          password: password
-        }))
-          // .then((serverRusult) => {
-          //   if (serverRusult.type === 'user/login/fulfilled') {
-          //     navigate(-1);
-          //   }
-          // });
-      }
-    }
+     if (login !== null && password !== null) {
+         dispatch(loginAction({
+           login: login,
+           password: password
+         }))
+        //  .then((serverRusult) => {
+        //   if (serverRusult.type === 'user/login/fulfilled') {
+        //     navigate(AppRoute.Main);
+        //   }
+        // });
+     }
   };
 
-  // вывод значения полей формы в консоль
-  // посмотреть в ТЗ куда перенаправлять после успешной авторизации
+  // посмотреть в ТЗ куда перенаправлять после успешной авторизации - на главную?
 
   return (
     <form action="" method="post" onSubmit={handleSubmit}>

@@ -1,8 +1,16 @@
 import { createAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
+import { TUser } from '../types/user';
 
-export const userInfo = createAction('user/info');
+//меняет статус авторизации noAuth на Auth и выводит в консоль текущий статус авторизации
+export const userInfo = createAction('user/info', (value: TUser) => {
+  console.log(value);
+  return {
+    payload: value,
+    currentDate: new Date(),
+  };
+});
 
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const setAuthorizationAction = createAction<AuthorizationStatus>('user/checkAuthorization');
 
-export const serverError = createAction<string | null>('game/serverError');
+export const serverErrorAction = createAction<string | null>('serverError');
