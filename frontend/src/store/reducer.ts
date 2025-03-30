@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, UserGender, UserLocation } from '../const';
 import { TAuthProcess } from '../types/state';
 import { userInfo, setAuthorizationAction, serverErrorAction } from './action';
-import { loginAction } from './api-actions';
+import { loginAction, registrationAction } from './api-actions';
 
 const initialState: TAuthProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -38,6 +38,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loginAction.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(registrationAction.fulfilled, (state, action) => {
+      state.userInfo = action.payload;
+    })
+    .addCase(registrationAction.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth; //? TODO
     })
     .addCase(serverErrorAction, (state, action) => {
       state.error = action.payload;

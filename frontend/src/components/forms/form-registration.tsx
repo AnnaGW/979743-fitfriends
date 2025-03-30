@@ -1,6 +1,10 @@
 import { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
 import { UserGender, UserLocation, UserRole } from '../../const';
 import './regform.css';
+import { registrationAction } from '../../store/api-actions';
+import { AppRoute } from '../../const';
 
 
 function RegistrationForm(): JSX.Element {
@@ -17,27 +21,31 @@ function RegistrationForm(): JSX.Element {
   const [regRole, setRegRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(true);
 
-  const locationVisibleStyles = {
-    visibility: "visible", opacity: 1
+  const regData = {
+    name: regName,
+    email: regEmail,
+    password: regPassword,
+    avatar: regAvatar,
+    gender: regGender,
+    dateOfBirth: regDateOfBirth,
+    description: regDescription,
+    location: regLocation,
+    backgroundImg: regBackgroundImg,
+    // regRole: regRole,
   }
+
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // валидация введенных данных
-    const regData = {
-      name: regName,
-      email: regEmail,
-      password: regPassword,
-      avatar: regAvatar,
-      gender: regGender,
-      dateOfBirth: regDateOfBirth,
-      description: regDescription,
-      location: regLocation,
-      backgroundImg: regBackgroundImg,
-      regRole: regRole,
-      checkedAgreement: checkedAgreement,
-    }
-    console.log('regData - ', regData);
+    dispatch(registrationAction(regData))
+    .then((serverRusult) => {
+      if (serverRusult.type === 'user/login/fulfilled') {
+        navigate(AppRoute.Main);
+      }
+    });
   };
 
   return (
