@@ -14,9 +14,10 @@ export const loginAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('user/login', async ({ login, password }, { extra: api }) => {
-  console.log('form value - ', login, password);
-  const serializedData = JSON.stringify({ login, password });
+>('user/login', async ({ email, password }, { extra: api }) => {
+  console.log('form value - ', email, password);
+  const serializedData = JSON.stringify({ email, password });
+  console.log('serializedData', serializedData);
   // const { data } = await api.post<TUser>(APIRoute.Login, { login, password });
   const { data } = await api.post<TUser>(APIRoute.Login, serializedData);
 

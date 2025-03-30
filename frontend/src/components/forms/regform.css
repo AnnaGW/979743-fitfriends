@@ -1,0 +1,10 @@
+.custom-select__list--visible {
+  opacity: 1;
+  visibility: visible;
+  z-index: 100;
+}
+
+.custom-select__list li {
+  padding: 5px;
+  cursor: pointer;
+}

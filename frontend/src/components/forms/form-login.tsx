@@ -1,13 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-// import { checkAuthorization, userInfo } from '../../store/action';
-// import { AuthorizationStatus, UserGender, UserLocation } from '../../const';
-import { PASSWORD_PATTERN, EMAIL_PATTERN, AppRoute } from '../../const';
+import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(): JSX.Element {
-  const [login, setLogin] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
@@ -15,20 +13,20 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-     if (login !== null && password !== null) {
+     if (email !== null && password !== null) {
          dispatch(loginAction({
-           login: login,
+           email: email,
            password: password
          }))
-        //  .then((serverRusult) => {
-        //   if (serverRusult.type === 'user/login/fulfilled') {
-        //     navigate(AppRoute.Main);
-        //   }
-        // });
+         .then((serverRusult) => {
+          if (serverRusult.type === 'user/login/fulfilled') {
+            navigate(AppRoute.Main);
+          }
+        });
      }
   };
 
-  // посмотреть в ТЗ куда перенаправлять после успешной авторизации - на главную?
+  // куда перенаправлять после успешной авторизации - на главную?
 
   return (
     <form action="" method="post" onSubmit={handleSubmit}>
@@ -40,8 +38,8 @@ function LoginForm(): JSX.Element {
               <input
                 type="email"
                 name="email"
-                value={login ?? ''}
-                onChange={(evt) => setLogin(evt.target.value)}
+                value={email ?? ''}
+                onChange={(evt) => setEmail(evt.target.value)}
                 placeholder="Email"
                 required={false}
                 id="auth-name"

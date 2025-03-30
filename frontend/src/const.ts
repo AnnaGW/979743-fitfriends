@@ -48,3 +48,8 @@ export enum APIRoute {
 
 export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
 export const EMAIL_PATTERN = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+export enum UserRole {
+  Sportsman = 'Sportsman',
+  Coach = 'Coach',
+}
