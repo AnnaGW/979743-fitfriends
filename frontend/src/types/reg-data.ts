@@ -5,7 +5,6 @@ export type TRegData = {
   avatar: string;
   gender: string;
   dateOfBirth: string;
-  description: string;
   location: string;
   backgroundImg: string;
   // regRole: string;

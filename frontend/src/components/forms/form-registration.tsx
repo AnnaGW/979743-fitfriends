@@ -14,7 +14,6 @@ function RegistrationForm(): JSX.Element {
   const [regAvatar, setRegAvatar] = useState<string>('');
   const [regGender, setRegGender] = useState<string>(UserGender.Unimportant);
   const [regDateOfBirth, setRegdateOfBirth] = useState<string>('');
-  const [regDescription, setRegDescription] = useState<string>('');
   const [regLocation, setRegLocation] = useState<string>('');
   const [locationVisible, setLocationVisible] = useState<boolean>(false);
   const [regBackgroundImg, setRegBackgroundImg] = useState<string>('');
@@ -28,7 +27,6 @@ function RegistrationForm(): JSX.Element {
     avatar: regAvatar,
     gender: regGender,
     dateOfBirth: regDateOfBirth,
-    description: regDescription,
     location: regLocation,
     backgroundImg: regBackgroundImg,
     // regRole: regRole,
@@ -40,6 +38,7 @@ function RegistrationForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // валидация введенных данных
+    console.log('regData - ', regData);
     dispatch(registrationAction(regData))
     .then((serverRusult) => {
       if (serverRusult.type === 'user/login/fulfilled') {

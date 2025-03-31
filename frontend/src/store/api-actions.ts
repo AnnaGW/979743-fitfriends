@@ -34,6 +34,6 @@ export const registrationAction = createAsyncThunk<
 >('user/registration', async (newUser: TRegData, { extra: api }) => {
   const serializedData = JSON.stringify(newUser);
   console.log('serializedData', serializedData);
-  const { data } = await api.post<TUser>(APIRoute.Login, serializedData);
+  const { data } = await api.post<TUser>(APIRoute.Registration, serializedData);
   return data;
 });

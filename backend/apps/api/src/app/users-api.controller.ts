@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Body, Controller, Post, Req, UseFilters } from '@nestjs/common';
 
-import { LoginUserDto } from '@backend/user';
+import { CreateUserDto, LoginUserDto } from '@backend/user';
 
 import { ApplicationServiceURL } from './configuration/api.config';
 import { AxiosExceptionFilter } from './filters/axios-exception.filter';
@@ -16,6 +16,15 @@ export class UsersApiController {
     const { data } = await this.httpService.axiosRef.post(
       `${ApplicationServiceURL.Users}/login`,
       loginUserDto
+    );
+    return data;
+  }
+
+  @Post('registration')
+  public async registration(@Body() newUserDto: CreateUserDto) {
+    const { data } = await this.httpService.axiosRef.post(
+      `${ApplicationServiceURL.Users}/register`,
+      newUserDto
     );
     return data;
   }
