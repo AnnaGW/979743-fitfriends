@@ -43,4 +43,20 @@ export class UsersApiController {
 
     return data;
   }
+
+  @Post('check-auth')
+  public async checkAuth(@Req() req: Request) {
+    console.log('что пришло в api - ', req.headers['authorization']);
+    const { data } = await this.httpService.axiosRef.post(
+      `${ApplicationServiceURL.Users}/check`,
+      null,
+      {
+        headers: {
+          Authorization: req.headers['authorization'],
+        },
+      }
+    );
+
+    return data;
+  }
 }

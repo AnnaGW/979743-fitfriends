@@ -44,6 +44,7 @@ export enum NameSpace {
 export enum APIRoute {
   Login = 'users-api/login',
   Registration = 'users-api/registration',
+  Check = 'users-api/check-auth',
 }
 
 export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
