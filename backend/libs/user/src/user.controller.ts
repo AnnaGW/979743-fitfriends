@@ -8,6 +8,7 @@ import {
   UseGuards,
   HttpCode,
   HttpStatus,
+  Delete,
 } from '@nestjs/common';
 import { MongoIdValidationPipe } from '@backend/pipes';
 import { UserService } from './user.service';
@@ -49,12 +50,18 @@ export class UserController {
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   public async refreshToken(@Req() { user }: RequestWithUser) {
+    console.log('что приходит при запросе на refresh токен - ', user);
     return this.userService.createUserToken(user);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('check')
   public async checkToken(@Req() { user: payload }: RequestWithTokenPayload) {
     return payload;
+  }
+
+  @Delete('logout')
+  public async deleteToken(@Req() { user: payload }: RequestWithTokenPayload) {
+    //выделить из пришедшей информации id токена и передать его в сервис deleteUserToken.
   }
 }

@@ -56,8 +56,7 @@ export class UserService {
       passwordHash: '',
       avatar,
       gender,
-      dateOfBirth: dayjs(dateOfBirth).toDate(), // TODO
-      // dateOfBirth: new Date(dateOfBirth),
+      dateOfBirth: dayjs(dateOfBirth).toDate(),
       description,
       location,
       backgroundImg,
@@ -137,5 +136,9 @@ export class UserService {
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     }
+  }
+
+  public async deleteUserToken(tokenId: string): Promise<void> {
+    //обращение к сервису refreshTokenService
   }
 }

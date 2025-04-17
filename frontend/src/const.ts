@@ -32,7 +32,10 @@ export const REQUEST_TIMEOUT = 5000;
 
 export const TIMEOUT_SHOW_ERROR = 10000;
 
-export const AUTH_TOKEN_KEY_NAME = 'fitfriends-token';
+export enum AUTH_TOKEN {
+  Access = 'fitfriends-access-token',
+  Refresh = 'fitfriends-refresh-token',
+}
 
 export enum NameSpace {
   Auth = 'AUTH', // действия, связанные с авторизацией
@@ -43,6 +46,7 @@ export enum NameSpace {
 
 export enum APIRoute {
   Login = 'users-api/login',
+  Logout = 'users-api/logout',
   Registration = 'users-api/registration',
   Check = 'users-api/check-auth',
 }

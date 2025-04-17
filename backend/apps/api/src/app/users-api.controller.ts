@@ -1,5 +1,12 @@
 import { HttpService } from '@nestjs/axios';
-import { Body, Controller, Post, Req, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Post,
+  Req,
+  UseFilters,
+} from '@nestjs/common';
 
 import { CreateUserDto, LoginUserDto } from '@backend/user';
 
@@ -46,7 +53,6 @@ export class UsersApiController {
 
   @Post('check-auth')
   public async checkAuth(@Req() req: Request) {
-    console.log('что пришло в api - ', req.headers['authorization']);
     const { data } = await this.httpService.axiosRef.post(
       `${ApplicationServiceURL.Users}/check`,
       null,
@@ -58,5 +64,11 @@ export class UsersApiController {
     );
 
     return data;
+  }
+
+  @Delete('logout')
+  public async logout(@Req() req: Request) {
+    console.log('что пришло в api - ', req.headers['authorization']);
+    // отзыв refresh token в users
   }
 }

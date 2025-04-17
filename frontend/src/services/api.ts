@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
-import { getToken } from './token';
+import { getAccessToken, getRefreshToken } from './token';
 import { processErrorHandle } from './process-error-handle';
 
 type DetailMessageType = {
@@ -24,10 +24,10 @@ export const createAPI = (): AxiosInstance => {
   });
 
   api.interceptors.request.use((config: AxiosRequestConfig) => {
-    const token = getToken();
-
-    if (token && config.headers) {
-      config.headers['authorization'] = token;
+    const accessToken = getAccessToken();
+    console.log('интерсептор работает...');
+    if (accessToken && config.headers) {
+      config.headers['Authorization'] = 'Bearer ' + accessToken;
     }
 
     return config;

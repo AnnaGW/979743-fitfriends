@@ -11,6 +11,7 @@ function Login(): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('authorizationStatus в Login - ', authorizationStatus);
     if (authorizationStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Main);
     }
