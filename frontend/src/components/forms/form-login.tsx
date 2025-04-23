@@ -26,8 +26,6 @@ function LoginForm(): JSX.Element {
      }
   };
 
-  // куда перенаправлять после успешной авторизации - на главную?
-
   return (
     <form action="" method="post" onSubmit={handleSubmit}>
       <div className="sign-in">

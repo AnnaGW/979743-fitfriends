@@ -5,7 +5,7 @@ import { AuthorizationStatus } from '../const';
 export type TAuthProcess = {
   authorizationStatus: AuthorizationStatus;
   userInfo: TUser;
-  error: string | null;
+  error: string | string[] | null;
 };
 
 export type TErrors = {

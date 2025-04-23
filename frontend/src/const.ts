@@ -1,17 +1,3 @@
-export enum UserLocation {
-  Pioneer = 'Пионерская',
-  Petrogradskaya = 'Петроградская',
-  Udelnaya = 'Удельная',
-  Starry = 'Звездная',
-  Sports = 'Спортивная',
-}
-
-export enum UserGender {
-  Male = 'мужской',
-  Female = 'женский',
-  Unimportant = 'не важно',
-}
-
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -53,8 +39,3 @@ export enum APIRoute {
 
 export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
 export const EMAIL_PATTERN = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-export enum UserRole {
-  Sportsman = 'Sportsman',
-  Coach = 'Coach',
-}

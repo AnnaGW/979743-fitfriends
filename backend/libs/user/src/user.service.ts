@@ -10,13 +10,13 @@ import {
   UnauthorizedException,
   Logger,
 } from '@nestjs/common';
-import dayjs from 'dayjs'; //TODO
-import { Token, User } from '@backend/core';
+import dayjs from 'dayjs';
+import { Token, Ward, Coach } from '@backend/core';
 import { createJWTPayload } from '@backend/helpers';
 import { UserRepository } from './user.repository';
 import { RefreshTokenService } from './refresh-token-module/refresh-token.service';
 import { UserEntity } from './user.entity';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserCommonDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { jwtConfig } from '@backend/user-config';
 import {
@@ -24,6 +24,8 @@ import {
   AUTH_USER_NOT_FOUND,
   AUTH_USER_PASSWORD_WRONG,
 } from './user.constant';
+
+type User = Ward & Coach;
 
 @Injectable()
 export class UserService {
@@ -37,17 +39,16 @@ export class UserService {
     private readonly refreshTokenService: RefreshTokenService
   ) {}
 
-  public async register(dto: CreateUserDto): Promise<UserEntity> {
+  public async register(dto: CreateUserCommonDto): Promise<UserEntity> {
     const {
       name,
       email,
       password,
       avatar,
-      gender,
       dateOfBirth,
-      description,
       location,
-      backgroundImg,
+      gender,
+      role,
     } = dto;
 
     const user = {
@@ -55,11 +56,11 @@ export class UserService {
       email,
       passwordHash: '',
       avatar,
-      gender,
       dateOfBirth: dayjs(dateOfBirth).toDate(),
-      description,
       location,
-      backgroundImg,
+      gender,
+      role,
+      backgroundImg: 'default.png',
       createdAt: new Date(),
     };
 

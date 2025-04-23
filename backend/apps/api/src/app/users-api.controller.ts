@@ -8,7 +8,7 @@ import {
   UseFilters,
 } from '@nestjs/common';
 
-import { CreateUserDto, LoginUserDto } from '@backend/user';
+import { CreateUserCommonDto, LoginUserDto } from '@backend/user';
 
 import { ApplicationServiceURL } from './configuration/api.config';
 import { AxiosExceptionFilter } from './filters/axios-exception.filter';
@@ -28,7 +28,8 @@ export class UsersApiController {
   }
 
   @Post('registration')
-  public async registration(@Body() newUserDto: CreateUserDto) {
+  public async registration(@Body() newUserDto: CreateUserCommonDto) {
+    console.log('что пришло в контроллер api - ', newUserDto);
     const { data } = await this.httpService.axiosRef.post(
       `${ApplicationServiceURL.Users}/register`,
       newUserDto
@@ -68,7 +69,7 @@ export class UsersApiController {
 
   @Delete('logout')
   public async logout(@Req() req: Request) {
-    console.log('что пришло в api - ', req.headers['authorization']);
+    console.log('что пришло в logout api - ', req.headers['authorization']);
     // отзыв refresh token в users
   }
 }

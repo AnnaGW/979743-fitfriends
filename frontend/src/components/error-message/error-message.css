@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   padding: 100px;
-  z-index: 100;
+  z-index: 1001;
 }
 
 .error-message {

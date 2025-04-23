@@ -3,15 +3,14 @@ POST http://localhost:3333/api/user/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "us53",
-  "email": "use53@new.local",
-  "password": "12545htyhdb",
-  "avatar": "avatar53.jpg",
-  "gender": "женский",
-  "dateOfBirth": "2004-04-05",
-  "description": "Girl53 rtgrtg tgaryyth trr",
-  "location": "Удельная",
-  "backgroundImg": "bf53png"
+  "name": "us61",
+  "email": "use61@new.local",
+  "password": "1254567890",
+  "avatar": "avatar61.jpg",
+  "dateOfBirth": "2004-05-31",
+  "location": "Пионерская",
+  "gender": "неважно",
+  "role": "user"
 }
 
 ###
@@ -27,8 +26,8 @@ POST http://localhost:3333/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "use53@new.local",
-  "password": "12545htyhdb"
+  "email": "use60@new.local",
+  "password": "1254567890"
 }
 
 ###
@@ -42,7 +41,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2RkYjJjY
 
 # Check user token
 POST http://localhost:3333/api/user/check HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2RkYjJjYWQ0MDI0NjM1ZmNjMDZhNjUiLCJuYW1lIjoidXM1MyIsImVtYWlsIjoidXNlNTNAbmV3LmxvY2FsIiwiYXZhdGFyIjoiYXZhdGFyNTMuanBnIiwiZ2VuZGVyIjoi0LbQtdC90YHQutC40LkiLCJkYXRlT2ZCaXJ0aCI6IjIwMDQtMDQtMDRUMTg6MDA6MDAuMDAwWiIsImRlc2NyaXB0aW9uIjoiR2lybDUzIHJ0Z3J0ZyB0Z2FyeXl0aCB0cnIiLCJsb2NhdGlvbiI6ItCj0LTQtdC70YzQvdCw0Y8iLCJiYWNrZ3JvdW5kSW1nIjoiYmY1M3BuZyIsImNyZWF0ZWRBdCI6IjIwMjUtMDMtMjFUMTg6NDE6MTQuNDA3WiIsImlhdCI6MTc0NDgyNzEyMywiZXhwIjoxNzQ0ODI4MDIzfQ.NwzW4AC2MGW5Egupd2wuQGUhQq-cQk0rAAGmiLDnqvA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODA3YjUzN2ViYzcwNjBjOTRjYzczZDUiLCJuYW1lIjoidXM2MSIsImVtYWlsIjoidXNlNjFAbmV3LmxvY2FsIiwiYXZhdGFyIjoiYXZhdGFyNjEuanBnIiwiZGF0ZU9mQmlydGgiOiIyMDA0LTA1LTMwVDE4OjAwOjAwLjAwMFoiLCJsb2NhdGlvbiI6ItCf0LjQvtC90LXRgNGB0LrQsNGPIiwiZ2VuZGVyIjoi0L3QtdCy0LDQttC90L4iLCJyb2xlIjoidXNlciIsImNyZWF0ZWRBdCI6IjIwMjUtMDQtMjJUMTU6MjY6NDcuNDQ4WiIsImJhY2tncm91bmRJbWciOiJkZWZhdWx0LnBuZyIsImlhdCI6MTc0NTMzNTYwNywiZXhwIjoxNzQ1MzM2NTA3fQ.EuJb8hUqCqMjcxUZTFsKcKZmls8CWusY9HnUzdZMAys
 
 ###
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2RkYjJjYWQ0MDI0NjM1ZmNjMDZhNjUiLCJuYW1lIjoidXM1MyIsImVtYWlsIjoidXNlNTNAbmV3LmxvY2FsIiwiYXZhdGFyIjoiYXZhdGFyNTMuanBnIiwiZ2VuZGVyIjoi0LbQtdC90YHQutC40LkiLCJkYXRlT2ZCaXJ0aCI6IjIwMDQtMDQtMDRUMTg6MDA6MDAuMDAwWiIsImRlc2NyaXB0aW9uIjoiR2lybDUzIHJ0Z3J0ZyB0Z2FyeXl0aCB0cnIiLCJsb2NhdGlvbiI6ItCj0LTQtdC70YzQvdCw0Y8iLCJiYWNrZ3JvdW5kSW1nIjoiYmY1M3BuZyIsImNyZWF0ZWRBdCI6IjIwMjUtMDMtMjFUMTg6NDE6MTQuNDA3WiIsInRva2VuSWQiOiJmMjE0Yjc0NC1iZTAyLTQ3NmQtYjcxZS0wNjljN2VmNmIwMzYiLCJpYXQiOjE3NDQ4MjcyODksImV4cCI6MTc0NTQzMjA4OX0.1lPjQ8Av0CA5rU1jUxTvmZTEsoMY3czIvoFKBolWwBM

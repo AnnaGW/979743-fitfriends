@@ -1,0 +1,20 @@
+.loading-data {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.loading-data h1 {
+  margin: auto;
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
+  color: #4481c3;
+}
+
+.loading-data img {
+  margin: auto;
+  margin-bottom: 30px;
+  width: 100px;
+  height: 100px;
+}

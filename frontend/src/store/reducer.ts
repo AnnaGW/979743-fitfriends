@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { AuthorizationStatus, UserGender, UserLocation } from '../const';
+import { AuthorizationStatus } from '../const';
+import { UserGender, UserLocation } from '../types';
 import { TAuthProcess } from '../types/state';
 import { userInfo, setAuthorizationAction, serverErrorAction } from './action';
 import { loginAction, logoutAction, registrationAction, checkAuthAction } from './api-actions';
@@ -14,9 +15,7 @@ const initialState: TAuthProcess = {
     gender: UserGender.Unimportant,
     createdAt: new Date().toISOString(),
     dateOfBirth: new Date().toISOString(),
-    description: '',
     location: UserLocation.Starry,
-    backgroundImg: '',
     refreshToken: '',
     accessToken: '',
   },

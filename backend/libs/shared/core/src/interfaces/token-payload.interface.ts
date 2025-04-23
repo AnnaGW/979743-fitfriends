@@ -1,13 +1,30 @@
-import { UserGender, UserLocation } from '@backend/core';
+import {
+  UserGender,
+  UserLocation,
+  Role,
+  TrainingType,
+  TrainingDuration,
+  TrainingLevel,
+} from '@backend/core';
 export interface TokenPayload {
   sub: string;
-  email: string;
   name: string;
+  email: string;
   avatar?: string;
-  gender: UserGender;
   dateOfBirth?: Date;
-  description?: string;
   location: UserLocation;
-  backgroundImg: string;
+  gender: UserGender;
+  role: Role;
   createdAt: Date;
+  description?: string;
+  backgroundImg?: string;
+  trainingType?: TrainingType;
+  trainingLevel?: TrainingLevel;
+  trainingDuration?: TrainingDuration;
+  calories?: number;
+  caloriesPerDay?: number;
+  isUserReady?: boolean;
+  coachMerits?: string;
+  isPersonalCoach?: boolean;
+  certificates?: string;
 }

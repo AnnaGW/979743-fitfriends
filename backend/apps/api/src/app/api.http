@@ -3,13 +3,14 @@ POST http://localhost:4000/api/users-api/registration HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "us56",
-  "email": "use55@new.local",
-  "password": "12545678",
-  "avatar": "avatar55.jpg",
-  "gender": "женский",
-  "dateOfBirth": "2004-04-05",
-  "location": "Удельная",
+  "name": "us62",
+  "email": "use62@new.local",
+  "password": "1254567890",
+  "avatar": "avatar62.jpg",
+  "dateOfBirth": "2004-05-01",
+  "location": "Пионерская",
+  "gender": "мужской",
+  "role": "user"
 }
 
 ###

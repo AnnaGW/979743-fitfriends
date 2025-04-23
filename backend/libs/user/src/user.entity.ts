@@ -1,26 +1,46 @@
 import { genSalt, hash, compare } from 'bcrypt';
-import { AuthUser, Entity, StorableEntity, UserGender } from '@backend/core';
+import {
+  Coach,
+  Ward,
+  Entity,
+  Role,
+  StorableEntity,
+  TrainingDuration,
+  TrainingLevel,
+  TrainingType,
+  UserGender,
+  UserLocation,
+} from '@backend/core';
 import { SALT_ROUNDS } from './user.constant';
-import { UserLocation } from '@backend/core';
 
-export class UserEntity extends Entity implements StorableEntity<AuthUser> {
-  public email: string;
+export class UserEntity extends Entity implements StorableEntity<Coach & Ward> {
   public name: string;
-  public avatar?: string;
+  public email: string;
   public passwordHash: string;
-  public gender: UserGender;
+  public avatar?: string;
   public dateOfBirth?: Date;
-  public description?: string;
   public location: UserLocation;
-  public backgroundImg: string;
+  public gender: UserGender;
+  public role: Role;
   public createdAt: Date;
+  public description?: string;
+  public backgroundImg?: string;
+  public trainingLevel?: TrainingLevel;
+  public trainingType?: TrainingType;
+  public trainingDuration?: TrainingDuration;
+  public calories?: number;
+  public caloriesPerDay?: number;
+  public isUserReady?: boolean;
+  public coachMerits?: string;
+  public isPersonalCoach?: boolean;
+  public certificates?: string;
 
-  constructor(user?: AuthUser) {
+  constructor(user?: Coach & Ward) {
     super();
     this.populate(user);
   }
 
-  public populate(user?: AuthUser): void {
+  public populate(user?: Coach & Ward): void {
     if (!user) {
       return;
     }
@@ -34,10 +54,20 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
     this.description = user.description;
     this.location = user.location;
     this.backgroundImg = user.backgroundImg;
-    this.createdAt = user.createdAt; // возм, ?? текущая дата //TODO
+    this.createdAt = user.createdAt;
+    this.role = user.role;
+    this.trainingLevel = user.trainingLevel;
+    this.trainingType = user.trainingType;
+    this.trainingDuration = user.trainingDuration;
+    this.calories = user.calories;
+    this.caloriesPerDay = user.caloriesPerDay;
+    this.isUserReady = user.isUserReady;
+    this.coachMerits = user.coachMerits;
+    this.isPersonalCoach = user.isPersonalCoach;
+    this.certificates = user.certificates;
   }
 
-  public toPOJO(): AuthUser {
+  public toPOJO(): Coach & Ward {
     return {
       id: this.id,
       email: this.email,
@@ -50,6 +80,16 @@ export class UserEntity extends Entity implements StorableEntity<AuthUser> {
       location: this.location,
       backgroundImg: this.backgroundImg,
       createdAt: this.createdAt,
+      role: this.role,
+      trainingLevel: this.trainingLevel,
+      trainingType: this.trainingType,
+      trainingDuration: this.trainingDuration,
+      calories: this.calories,
+      caloriesPerDay: this.caloriesPerDay,
+      isUserReady: this.isUserReady,
+      coachMerits: this.coachMerits,
+      isPersonalCoach: this.isPersonalCoach,
+      certificates: this.certificates,
     };
   }
 

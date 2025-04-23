@@ -11,8 +11,8 @@ type DetailMessageType = {
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true,
+  [StatusCodes.CONFLICT]: true,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
@@ -25,7 +25,6 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use((config: AxiosRequestConfig) => {
     const accessToken = getAccessToken();
-    console.log('интерсептор работает...');
     if (accessToken && config.headers) {
       config.headers['Authorization'] = 'Bearer ' + accessToken;
     }

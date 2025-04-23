@@ -1,4 +1,6 @@
-import { User, TokenPayload } from '@backend/core';
+import { UserCommon, TokenPayload, Coach, Ward } from '@backend/core';
+
+type User = Ward & Coach;
 
 export function createJWTPayload(user: User): TokenPayload {
   return {
@@ -6,11 +8,21 @@ export function createJWTPayload(user: User): TokenPayload {
     name: user.name,
     email: user.email,
     avatar: user.avatar,
-    gender: user.gender,
     dateOfBirth: user.dateOfBirth,
-    description: user.description,
     location: user.location,
-    backgroundImg: user.backgroundImg,
+    gender: user.gender,
+    role: user.role,
     createdAt: user.createdAt,
+    description: user.description,
+    backgroundImg: user.backgroundImg,
+    trainingType: user.trainingType,
+    trainingLevel: user.trainingLevel,
+    trainingDuration: user.trainingDuration,
+    calories: user.calories,
+    caloriesPerDay: user.caloriesPerDay,
+    isUserReady: user.isUserReady,
+    coachMerits: user.coachMerits,
+    isPersonalCoach: user.isPersonalCoach,
+    certificates: user.certificates,
   };
 }

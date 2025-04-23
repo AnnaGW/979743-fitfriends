@@ -1,4 +1,4 @@
-import { UserGender, UserLocation } from '../const';
+import { UserGender, UserLocation } from '../types';
 
 export type TUser = {
   id?: string;
@@ -7,9 +7,7 @@ export type TUser = {
   avatar?: string;
   gender: UserGender;
   dateOfBirth?: string;
-  description?: string;
   location: UserLocation;
-  backgroundImg: string;
   createdAt: string;
   refreshToken: string;
   accessToken: string;

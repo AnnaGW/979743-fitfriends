@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class UserRdo {
+export class UserCommonRdo {
   @Expose()
   public id: string;
 
@@ -11,23 +11,29 @@ export class UserRdo {
   public email: string;
 
   @Expose()
-  public avatar: string;
+  public avatar?: string;
 
   @Expose()
   public gender: string;
 
   @Expose()
-  public dateOfBirth: string;
-
-  @Expose()
-  public description: string;
+  public dateOfBirth?: string;
 
   @Expose()
   public location: string;
+
+  @Expose()
+  public role: string;
 
   @Expose()
   public backgroundImg: string;
 
   @Expose()
   public createdAt: string;
+
+  @Expose()
+  public accessToken: string;
+
+  @Expose()
+  public refreshToken: string;
 }

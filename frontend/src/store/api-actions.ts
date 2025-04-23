@@ -17,12 +17,11 @@ export const loginAction = createAsyncThunk<
   }
 >('user/login', async ({ email, password }, { extra: api }) => {
   const { data } = await api.post<TUser>(APIRoute.Login, { email, password });
-  // saveToken(data.refreshToken);
+
   saveToken({
     accessToken: data.accessToken,
     refreshToken: data.refreshToken,
   });
-  console.log('data from loginAction - ', data);
   return data;
 });
 
@@ -48,8 +47,11 @@ export const registrationAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/registration', async (newUser: TRegData, { extra: api }) => {
-  const serializedData = JSON.stringify(newUser);
-  const { data } = await api.post<TUser>(APIRoute.Registration, serializedData);
+  const { data } = await api.post<TUser>(APIRoute.Registration, newUser);
+  saveToken({
+    accessToken: data.accessToken,
+    refreshToken: data.refreshToken,
+  });
   return data;
 });
 
@@ -63,6 +65,5 @@ export const checkAuthAction = createAsyncThunk<
   }
 >('user/checkAuth', async (_arg, { extra: api }) => {
   const { data } = await api.post<TUser>(APIRoute.Check);
-  console.log('что возвращает checkAuth - ', data);
   return data;
 });

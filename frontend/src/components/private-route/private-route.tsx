@@ -1,5 +1,6 @@
 import { AuthorizationStatus } from '../../const';
 import Intro from '../../pages/intro/intro';
+import Spinner from '../spinner/spinner';
 
 type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
@@ -7,8 +8,13 @@ type PrivateRouteProps = {
 }
 
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
-  console.log('authorizationStatus в PrivateRoute - ', props.authorizationStatus);
+
   const {authorizationStatus, children} = props;
+
+  if (authorizationStatus === AuthorizationStatus.Unknown) {
+    return (<Spinner />);
+  }
+
   return (
     authorizationStatus === AuthorizationStatus.Auth
       ? children

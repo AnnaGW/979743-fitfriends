@@ -1,35 +1,33 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import { UserGender, UserLocation, UserRole } from '../../const';
+import { UserGender, UserLocation, UserRole } from '../../types';
 import './regform.css';
 import { registrationAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 
 
 function RegistrationForm(): JSX.Element {
-  const [regName, setRegName] = useState<string>('');
-  const [regEmail, setRegEmail] = useState<string>('');
-  const [regPassword, setRegPassword] = useState<string>('');
-  const [regAvatar, setRegAvatar] = useState<string>('');
-  const [regGender, setRegGender] = useState<string>(UserGender.Unimportant);
-  const [regDateOfBirth, setRegdateOfBirth] = useState<string>('');
-  const [regLocation, setRegLocation] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [avatar, setAvatar] = useState<string>('defaultAvatar.png');
+  const [gender, setGender] = useState<string>(UserGender.Unimportant);
+  const [dateOfBirth, setDateOfBirth] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
   const [locationVisible, setLocationVisible] = useState<boolean>(false);
-  const [regBackgroundImg, setRegBackgroundImg] = useState<string>('');
-  const [regRole, setRegRole] = useState<string>(UserRole.Coach);
-  const [checkedAgreement, setCheckedAgreement] = useState<boolean>(true);
+  const [role, setRole] = useState<string>(UserRole.Coach);
+  const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
 
   const regData = {
-    name: regName,
-    email: regEmail,
-    password: regPassword,
-    avatar: regAvatar,
-    gender: regGender,
-    dateOfBirth: regDateOfBirth,
-    location: regLocation,
-    backgroundImg: regBackgroundImg,
-    // regRole: regRole,
+    name: name,
+    email: email,
+    password: password,
+    avatar: avatar,
+    gender: gender,
+    dateOfBirth: dateOfBirth,
+    location: location,
+    role: role,
   }
 
     const dispatch = useAppDispatch();
@@ -38,10 +36,9 @@ function RegistrationForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // валидация введенных данных
-    console.log('regData - ', regData);
     dispatch(registrationAction(regData))
-    .then((serverRusult) => {
-      if (serverRusult.type === 'user/login/fulfilled') {
+    .then((serverResult) => {
+      if (serverResult.type === 'user/registration/fulfilled') {
         navigate(AppRoute.Main);
       }
     });
@@ -71,7 +68,7 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">Имя</span>
               <span className="custom-input__wrapper">
-                <input type="text" name="name" value={regName ?? ''} onChange={(evt) => setRegName(evt.target.value)} id="reg-name" />
+                <input type="text" name="name" value={name ?? ''} onChange={(evt) => setName(evt.target.value)} id="reg-name" />
               </span>
             </label>
           </div>
@@ -79,7 +76,7 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">E-mail</span>
               <span className="custom-input__wrapper">
-                <input type="email" name="email" value={regEmail ?? ''} onChange={(evt) => setRegEmail(evt.target.value)} id="reg-email" />
+                <input type="email" name="email" value={email ?? ''} onChange={(evt) => setEmail(evt.target.value)} id="reg-email" />
               </span>
             </label>
           </div>
@@ -87,14 +84,14 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">Дата рождения</span>
               <span className="custom-input__wrapper">
-                <input type="date" name="birthday" max="2099-12-31" value={regDateOfBirth ?? ''} onChange={(evt) => setRegdateOfBirth(evt.target.value)} id="reg-birthday" />
+                <input type="date" name="birthday" max="2099-12-31" value={dateOfBirth ?? ''} onChange={(evt) => setDateOfBirth(evt.target.value)} id="reg-birthday" />
               </span>
             </label>
           </div>
           <div className="custom-select custom-select--not-selected">
             <span className="custom-select__label">Ваша локация</span>
             <button className="custom-select__button" type="button" aria-label="Выберите одну из опций" onFocus={() => setLocationVisible(true)} onBlur={() => setLocationVisible(false)}>
-              <span className="custom-select__text" style={{opacity: 0.5}}>{regLocation}</span>
+              <span className="custom-select__text" style={{opacity: 0.5}}>{location}</span>
               <span className="custom-select__icon" >
                 <svg width="15" height="6" aria-hidden="true">
                   <use xlinkHref="#arrow-down"></use>
@@ -105,18 +102,18 @@ function RegistrationForm(): JSX.Element {
               className={locationVisible ? "custom-select__list custom-select__list--visible" : "custom-select__list"}
               role="listbox"
             >
-              <li role="option" onClick={() => setRegLocation(UserLocation.Petrogradskaya)}>{UserLocation.Petrogradskaya}</li>
-              <li role="option" onClick={() => setRegLocation(UserLocation.Pioneer)}>{UserLocation.Pioneer}</li>
-              <li role="option" onClick={() => setRegLocation(UserLocation.Sports)}>{UserLocation.Sports}</li>
-              <li role="option" onClick={() => setRegLocation(UserLocation.Starry)}>{UserLocation.Starry}</li>
-              <li role="option" onClick={() => setRegLocation(UserLocation.Udelnaya)}>{UserLocation.Udelnaya}</li>
+              <li role="option" onClick={() => setLocation(UserLocation.Petrogradskaya)}>{UserLocation.Petrogradskaya}</li>
+              <li role="option" onClick={() => setLocation(UserLocation.Pioneer)}>{UserLocation.Pioneer}</li>
+              <li role="option" onClick={() => setLocation(UserLocation.Sports)}>{UserLocation.Sports}</li>
+              <li role="option" onClick={() => setLocation(UserLocation.Starry)}>{UserLocation.Starry}</li>
+              <li role="option" onClick={() => setLocation(UserLocation.Udelnaya)}>{UserLocation.Udelnaya}</li>
             </ul>
           </div>
           <div className="custom-input">
             <label>
               <span className="custom-input__label">Пароль</span>
               <span className="custom-input__wrapper">
-                <input type="password" name="password" autoComplete="off" value={regPassword ?? ''} onChange={(evt) => setRegPassword(evt.target.value)} id="reg-password"/>
+                <input type="password" name="password" autoComplete="off" value={password ?? ''} onChange={(evt) => setPassword(evt.target.value)} id="reg-password"/>
               </span>
             </label>
           </div>
@@ -129,8 +126,8 @@ function RegistrationForm(): JSX.Element {
                     type="radio"
                     name="sex"
                     value={UserGender.Male}
-                    checked={regGender == UserGender.Male ? true: false}
-                    onChange={() => setRegGender(UserGender.Male)}
+                    checked={gender == UserGender.Male ? true: false}
+                    onChange={() => setGender(UserGender.Male)}
                   />
                   <span className="custom-toggle-radio__icon"></span>
                   <span className="custom-toggle-radio__label">Мужской</span>
@@ -142,8 +139,8 @@ function RegistrationForm(): JSX.Element {
                     type="radio"
                     name="sex"
                     value={UserGender.Female}
-                    checked={regGender == UserGender.Female ? true: false}
-                    onChange={() => setRegGender(UserGender.Female)}
+                    checked={gender == UserGender.Female ? true: false}
+                    onChange={() => setGender(UserGender.Female)}
                   />
                   <span className="custom-toggle-radio__icon"></span>
                   <span className="custom-toggle-radio__label">Женский</span>
@@ -155,8 +152,8 @@ function RegistrationForm(): JSX.Element {
                     type="radio"
                     name="sex"
                     value={UserGender.Unimportant}
-                    checked={regGender == UserGender.Unimportant ? true: false}
-                    onChange={() => setRegGender(UserGender.Unimportant)}
+                    checked={gender == UserGender.Unimportant ? true: false}
+                    onChange={() => setGender(UserGender.Unimportant)}
                   />
                   <span className="custom-toggle-radio__icon"></span>
                   <span className="custom-toggle-radio__label">Неважно</span>
@@ -174,8 +171,8 @@ function RegistrationForm(): JSX.Element {
                   className="visually-hidden"
                   type="radio" name="role"
                   value="coach"
-                  checked={regRole == UserRole.Coach ? true: false}
-                  onChange={() => setRegRole(UserRole.Coach)}/>
+                  checked={role == UserRole.Coach ? true: false}
+                  onChange={() => setRole(UserRole.Coach)}/>
                 <span className="role-btn__icon">
                   <svg width="12" height="13" aria-hidden="true">
                     <use xlinkHref="#icon-cup"></use>
@@ -191,8 +188,8 @@ function RegistrationForm(): JSX.Element {
                   type="radio"
                   name="role"
                   value="sportsman"
-                  checked={regRole == UserRole.Sportsman ? true: false}
-                  onChange={() => setRegRole(UserRole.Sportsman)}/>
+                  checked={role == UserRole.Ward ? true: false}
+                  onChange={() => setRole(UserRole.Ward)}/>
                 <span className="role-btn__icon">
                   <svg width="12" height="13" aria-hidden="true">
                     <use xlinkHref="#icon-weight"></use>

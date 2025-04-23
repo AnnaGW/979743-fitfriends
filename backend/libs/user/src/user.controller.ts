@@ -10,12 +10,12 @@ import {
   HttpStatus,
   Delete,
 } from '@nestjs/common';
-import { MongoIdValidationPipe } from '@backend/pipes';
+// import { MongoIdValidationPipe } from '@backend/pipes'; //???? TODO: ts не находит этот модуль при компиляции
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserCommonDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { LoggedUserRdo } from './rdo/logged-user.rdo';
-import { UserRdo } from './rdo/user.rdo';
+import { UserCommonRdo } from './rdo/user-common.rdo';
 import { fillDto } from '@backend/helpers';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
@@ -27,9 +27,10 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  public async create(@Body() dto: CreateUserDto) {
+  public async create(@Body() dto: CreateUserCommonDto) {
     const newUser = await this.userService.register(dto);
-    return fillDto(UserRdo, { ...newUser.toPOJO() });
+    const userToken = await this.userService.createUserToken(newUser);
+    return fillDto(UserCommonRdo, { ...newUser.toPOJO(), ...userToken });
   }
 
   @Post('login')
@@ -39,12 +40,12 @@ export class UserController {
     return fillDto(LoggedUserRdo, { ...verifiedUser.toPOJO(), ...userToken });
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  public async show(@Param('id', MongoIdValidationPipe) id: string) {
-    const existUser = await this.userService.getUser(id);
-    return existUser.toPOJO();
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Get(':id')
+  // public async show(@Param('id', MongoIdValidationPipe) id: string) {
+  //   const existUser = await this.userService.getUser(id);
+  //   return existUser.toPOJO();
+  // }
 
   @UseGuards(JwtRefreshGuard)
   @Post('refresh')

@@ -6,6 +6,5 @@ export type TRegData = {
   gender: string;
   dateOfBirth: string;
   location: string;
-  backgroundImg: string;
-  // regRole: string;
+  role: string;
 };
