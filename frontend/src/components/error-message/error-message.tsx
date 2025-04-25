@@ -5,7 +5,6 @@ function ErrorMessage(): JSX.Element | null {
 
 
   const error = useAppSelector((state) => state.error);
-  console.log('error - ', error);
   return (error)
     ? <div className='error-container'><div className='error-message'>{error}</div></div>
     // ? error.map((er) => {return <div className='error-container'><div className='error-message'>{er}</div></div>})

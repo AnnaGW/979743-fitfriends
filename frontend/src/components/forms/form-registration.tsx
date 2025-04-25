@@ -39,7 +39,9 @@ function RegistrationForm(): JSX.Element {
     dispatch(registrationAction(regData))
     .then((serverResult) => {
       if (serverResult.type === 'user/registration/fulfilled') {
-        navigate(AppRoute.Main);
+        console.log('serverResult - ', serverResult);
+        // if(serverResult.payload.role === UserRole.Ward) {navigate(AppRoute.QuestionnaireWard)}
+        navigate(AppRoute.QuestionnaireCoach);
       }
     });
   };
@@ -68,7 +70,7 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">Имя</span>
               <span className="custom-input__wrapper">
-                <input type="text" name="name" value={name ?? ''} onChange={(evt) => setName(evt.target.value)} id="reg-name" />
+                <input type="text" name="name"   onChange={(evt) => setName(evt.target.value)} id="reg-name" />
               </span>
             </label>
           </div>

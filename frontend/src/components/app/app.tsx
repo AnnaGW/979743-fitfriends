@@ -7,6 +7,8 @@ import PrivateRoute from '../private-route/private-route';
 import { useAppSelector } from '../../hooks';
 import Registration from '../../pages/registration/registration';
 import Error404 from '../../pages/error/error';
+import QuestionnaireWardPage from '../../pages/questionnaires/questionnaire-ward';
+import QuestionnaireCoachPage from '../../pages/questionnaires/questionnaire-coach';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -27,6 +29,10 @@ function App(): JSX.Element {
           <Route path={AppRoute.Login} element={<Login />} />
 
           <Route path={AppRoute.Registration} element={<Registration />} />
+
+          <Route path={AppRoute.QuestionnaireWard} element={<QuestionnaireWardPage />} />
+
+          <Route path={AppRoute.QuestionnaireCoach} element={<QuestionnaireCoachPage />} />
 
           <Route path='*' element={<Error404 />} />
         </Routes>

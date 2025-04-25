@@ -28,4 +28,6 @@ export class UpdateCoachDto {
 
   @IsString()
   public certificates: string;
+
+  //Добавить флаг готов тренировать
 }

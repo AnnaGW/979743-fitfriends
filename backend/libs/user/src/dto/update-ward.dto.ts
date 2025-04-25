@@ -9,6 +9,8 @@ import {
   Matches,
   IsNumber,
   IsBoolean,
+  Min,
+  Max,
 } from 'class-validator';
 import {
   Role,
@@ -36,9 +38,14 @@ export class UpdateWardDto {
   @IsString()
   public trainingLevel: TrainingLevel;
 
-  @IsNumber()
+  @IsNumber({ maxDecimalPlaces: 0 })
+  @Min(1000)
+  @Max(5000)
   public calories: number;
 
+  @IsNumber({ maxDecimalPlaces: 0 })
+  @Min(1000)
+  @Max(5000)
   @IsNumber()
   public caloriesPerDay: number;
 }

@@ -4,6 +4,8 @@ export enum AppRoute {
   Logout = '/logout',
   Registration = '/registration',
   TrainingList = '/training-list',
+  QuestionnaireWard = '/questionnaire-ward',
+  QuestionnaireCoach = '/questionnaire-coach',
 }
 
 export enum AuthorizationStatus {
