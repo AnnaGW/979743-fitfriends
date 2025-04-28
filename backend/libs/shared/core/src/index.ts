@@ -19,3 +19,5 @@ export { SortDirection } from './interfaces/sort-direction.interface';
 export { PaginationResult } from './interfaces/pagination.interface';
 export { JwtToken } from './interfaces/jwt-token.interface';
 export { RefreshTokenPayload } from './interfaces/refresh-token-payload.interface';
+export { File } from './types/file.interface';
+export { StoredFile } from './types/stored-file.interface';

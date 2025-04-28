@@ -41,7 +41,9 @@
         "apps/fitfriends-back-e2e/**/*",
         "apps/trainings-e2e/**/*",
         "apps/users-e2e/**/*",
-        "apps/api-e2e/**/*"
+        "apps/api-e2e/**/*",
+        "files-e2e/**/*",
+        "apps/files-e2e/**/*"
       ]
     }
   ],

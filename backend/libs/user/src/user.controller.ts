@@ -10,7 +10,7 @@ import {
   HttpStatus,
   Delete,
 } from '@nestjs/common';
-// import { MongoIdValidationPipe } from '@backend/pipes'; //???? TODO: ts не находит этот модуль при компиляции
+import { MongoIdValidationPipe } from '@backend/pipes';
 import { UserService } from './user.service';
 import { CreateUserCommonDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -40,12 +40,12 @@ export class UserController {
     return fillDto(LoggedUserRdo, { ...verifiedUser.toPOJO(), ...userToken });
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Get(':id')
-  // public async show(@Param('id', MongoIdValidationPipe) id: string) {
-  //   const existUser = await this.userService.getUser(id);
-  //   return existUser.toPOJO();
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  public async show(@Param('id', MongoIdValidationPipe) id: string) {
+    const existUser = await this.userService.getUser(id);
+    return existUser.toPOJO();
+  }
 
   @UseGuards(JwtRefreshGuard)
   @Post('refresh')
