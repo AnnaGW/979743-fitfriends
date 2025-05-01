@@ -6,12 +6,12 @@ import './regform.css';
 import { registrationAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 
-
 function RegistrationForm(): JSX.Element {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [avatar, setAvatar] = useState<string>('defaultAvatar.png');
+  const [avatarSrc, setAvatarSrc] = useState<string>();
+  const [avatarFile, setAvatarFile] = useState<File>();
   const [gender, setGender] = useState<string>(UserGender.Unimportant);
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const [location, setLocation] = useState<string>('');
@@ -19,16 +19,16 @@ function RegistrationForm(): JSX.Element {
   const [role, setRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
 
-  const regData = {
-    name: name,
-    email: email,
-    password: password,
-    avatar: avatar,
-    gender: gender,
-    dateOfBirth: dateOfBirth,
-    location: location,
-    role: role,
-  }
+  // const regData = {
+  //   name: name,
+  //   email: email,
+  //   password: password,
+  //   // avatar: avatar,
+  //   gender: gender,
+  //   dateOfBirth: dateOfBirth,
+  //   location: location,
+  //   role: role,
+  // }
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -36,7 +36,28 @@ function RegistrationForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // валидация введенных данных
-    dispatch(registrationAction(regData))
+    const formData = new FormData();
+    formData.set('name', name);
+    formData.set('email', email);
+    formData.set('password', password);
+    formData.set('gender', gender);
+    formData.set('dateOfBirth', dateOfBirth);
+    formData.set('location', location);
+    formData.set('role', role);
+    // if (avatarSrc) {formData.set('avatarSrc', avatarSrc);}
+    if (avatarFile) {formData.set('avatar', avatarFile)};
+
+    console.log('Проходимся по ключам:')
+      for (let key of formData.keys()) {
+        console.log(key)
+      }
+
+    console.log('Проходимся по значениям:')
+    for (let value of formData.values()) {
+      console.log(value)
+    }
+
+    dispatch(registrationAction(formData))
     .then((serverResult) => {
       if (serverResult.type === 'user/registration/fulfilled') {
         console.log('serverResult - ', serverResult);
@@ -52,8 +73,21 @@ function RegistrationForm(): JSX.Element {
         <div className="sign-up__load-photo">
           <div className="input-load-avatar">
             <label>
-              <input className="visually-hidden" type="file" accept="image/png, image/jpeg" />
+              <input
+                id="certificates"
+                className="visually-hidden"
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={(evt) => {
+                  if (evt.target.files !== null && evt.target.files !== undefined) {
+                    setAvatarFile(evt.target.files[0]);
+                    setAvatarSrc(URL.createObjectURL(evt.target.files[0]));
+                    evt.target.value = '';
+                  }}
+                }
+              />
               <span className="input-load-avatar__btn">
+                <img src={avatarSrc ? avatarSrc : 'img/content/avatars/no-avatar.png'} className="sign-up__avatar-img"/>
                 <svg width="20" height="20" aria-hidden="true">
                   <use xlinkHref="#icon-import"></use>
                 </svg>

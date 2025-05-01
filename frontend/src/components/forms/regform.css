@@ -8,3 +8,12 @@
   padding: 5px;
   cursor: pointer;
 }
+
+.sign-up__avatar-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+}
+

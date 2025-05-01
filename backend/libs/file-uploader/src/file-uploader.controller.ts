@@ -5,6 +5,8 @@ import {
   Get,
   Param,
   Post,
+  Body,
+  Req,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -19,11 +21,16 @@ export class FileUploaderController {
   constructor(private readonly fileUploaderService: FileUploaderService) {}
 
   @Post('/upload')
-  @UseInterceptors(FileInterceptor('file'))
-  public async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    // return this.fileUploaderService.saveFile(file);
-    const fileEntity = await this.fileUploaderService.saveFile(file);
-    return fillDto(UploadedFileRdo, fileEntity.toPOJO());
+  @UseInterceptors(FileInterceptor('avatar'))
+  public async uploadFile(
+    // @Req() request: Request,
+    @Body() fileInfo,
+    @UploadedFile() file: Express.Multer.File
+  ) {
+    console.log('Что пришло в сервис fileInfo - ', fileInfo);
+    console.log('Что пришло в сервис files - ', file);
+    // const fileEntity = await this.fileUploaderService.saveFile(file);
+    // return fillDto(UploadedFileRdo, fileEntity.toPOJO());
   }
 
   @Get(':fileId')

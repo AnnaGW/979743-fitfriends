@@ -1,3 +1,5 @@
+import 'multer';
+import { Express } from 'express';
 import { HttpService } from '@nestjs/axios';
 import {
   Body,
@@ -6,8 +8,10 @@ import {
   Post,
   Req,
   UseFilters,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
-
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateUserCommonDto, LoginUserDto } from '@backend/user';
 
 import { ApplicationServiceURL } from './configuration/api.config';
@@ -28,12 +32,28 @@ export class UsersApiController {
   }
 
   @Post('registration')
-  public async registration(@Body() newUserDto: CreateUserCommonDto) {
-    console.log('что пришло в контроллер api - ', newUserDto);
+  @UseInterceptors(FileInterceptor('avatar'))
+  public async registration(
+    @Body() newUser,
+    @UploadedFile() file: Express.Multer.File
+  ) {
+    console.log('что пришло в контроллер api файл - ', file);
+    console.log('что пришло в контроллер api данные ', newUser);
+
     const { data } = await this.httpService.axiosRef.post(
-      `${ApplicationServiceURL.Users}/register`,
-      newUserDto
+      'http://localhost:3335/api/files/upload',
+      file,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data; boundary=boundary',
+        },
+      }
     );
+    console.log('что вернул МС files - ', data);
+    // const { data } = await this.httpService.axiosRef.post(
+    //   `${ApplicationServiceURL.Users}/register`,
+    //   newUserDto
+    // );
     return data;
   }
 
