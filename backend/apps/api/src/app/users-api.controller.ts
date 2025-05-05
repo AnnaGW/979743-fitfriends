@@ -37,9 +37,6 @@ export class UsersApiController {
     @Body() newUser,
     @UploadedFile() file: Express.Multer.File
   ) {
-    console.log('что пришло в контроллер api файл - ', file);
-    console.log('что пришло в контроллер api данные ', newUser);
-
     const { data } = await this.httpService.axiosRef.post(
       'http://localhost:3335/api/files/upload',
       file,
@@ -49,7 +46,6 @@ export class UsersApiController {
         },
       }
     );
-    console.log('что вернул МС files - ', data);
     // const { data } = await this.httpService.axiosRef.post(
     //   `${ApplicationServiceURL.Users}/register`,
     //   newUserDto
@@ -89,7 +85,6 @@ export class UsersApiController {
 
   @Delete('logout')
   public async logout(@Req() req: Request) {
-    console.log('что пришло в logout api - ', req.headers['authorization']);
     // отзыв refresh token в users
   }
 }

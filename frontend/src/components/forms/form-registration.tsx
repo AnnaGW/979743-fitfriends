@@ -23,16 +23,6 @@ function RegistrationForm(): JSX.Element {
   const [role, setRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
 
-  // const regData = {
-  //   name: name,
-  //   email: email,
-  //   password: password,
-  //   // avatar: avatar,
-  //   gender: gender,
-  //   dateOfBirth: dateOfBirth,
-  //   location: location,
-  //   role: role,
-  // }
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -70,7 +60,6 @@ function RegistrationForm(): JSX.Element {
     }
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    // валидация введенных данных
     const formData = new FormData();
     formData.set('name', name);
     formData.set('email', email);
@@ -82,22 +71,11 @@ function RegistrationForm(): JSX.Element {
     // if (avatarSrc) {formData.set('avatarSrc', avatarSrc);}
     if (avatarFile) {formData.set('avatar', avatarFile)};
 
-    console.log('Проходимся по ключам:')
-      for (let key of formData.keys()) {
-        console.log(key)
-      }
-
-    console.log('Проходимся по значениям:')
-    for (let value of formData.values()) {
-      console.log(value)
-    }
-
     dispatch(registrationAction(formData))
     .then((serverResult) => {
       if (serverResult.type === 'user/registration/fulfilled') {
-        console.log('serverResult - ', serverResult);
         // if(serverResult.payload.role === UserRole.Ward) {navigate(AppRoute.QuestionnaireWard)}
-        navigate(AppRoute.QuestionnaireCoach);
+        navigate(AppRoute.QuestionnaireWard);
       }
     });
   };
@@ -263,7 +241,6 @@ function RegistrationForm(): JSX.Element {
                     checkInputValidity(evt.target);
                     setPassword(evt.target.value);
                     setIsPasswordValid(evt.target.validity.valid);
-                    console.log(evt.target.validity);
                   }}
                   onBlur={(evt) => toggleInputError(evt.target)}
                   onFocus={(evt) => toggleErrorSpan(evt.target, '')}
