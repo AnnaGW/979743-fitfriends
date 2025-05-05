@@ -17,3 +17,21 @@
   height: 100px;
 }
 
+/* Для изменения цвета обводки элемента формы при валидации */
+.form__type-input-error {
+  border-color: #f11c4a !important;
+}
+
+/* Для отображения span-элемента с ошибкой */
+.form__error-active {
+  display: block;
+  font-style: italic;
+  font-size: 14px;
+  color: #f11c4a;
+}
+
+/* Для блокировки кнопки submit */
+.button-inactive {
+  cursor: default;
+  background-color: rgb(211 211 211 / 0.6);
+}

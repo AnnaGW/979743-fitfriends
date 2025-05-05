@@ -8,13 +8,17 @@ import { AppRoute } from '../../const';
 
 function RegistrationForm(): JSX.Element {
   const [name, setName] = useState<string>('');
+  const [isNameValid, setIsNameValid] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
+  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
   const [avatarSrc, setAvatarSrc] = useState<string>();
   const [avatarFile, setAvatarFile] = useState<File>();
   const [gender, setGender] = useState<string>(UserGender.Unimportant);
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const [location, setLocation] = useState<string>('');
+  const [isLocationNotEmpty, setIsLocationNotEmpty] = useState<boolean>(false);
   const [locationVisible, setLocationVisible] = useState<boolean>(false);
   const [role, setRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
@@ -29,10 +33,41 @@ function RegistrationForm(): JSX.Element {
   //   location: location,
   //   role: role,
   // }
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    const toggleErrorSpan = (inputElement: EventTarget & HTMLInputElement, errorMessage: string): void => {
+      const errorElement = document.querySelector(`.${inputElement.id}-error`)
+      if (errorElement) {
+        if (errorMessage !== '') {
+          inputElement.classList.add('form__type-input-error')
+          errorElement.textContent = errorMessage
+          errorElement.classList.add('form__error-active')
+        } else {
+          inputElement.classList.remove('form__type-input-error')
+          errorElement.textContent = ''
+          errorElement.classList.remove('form__error-active')
+        }
+      }
+    }
+
+    const checkInputValidity = (inputElement: EventTarget & HTMLInputElement): void => {
+      if (
+        inputElement.validity.patternMismatch || inputElement.validity.typeMismatch
+        || inputElement.validity.rangeOverflow || inputElement.validity.rangeUnderflow
+        || inputElement.validity.tooLong || inputElement.validity.tooShort
+      ) {
+        inputElement.setCustomValidity(inputElement.dataset.errorMessage ?? 'ошибка')
+      } else {inputElement.setCustomValidity('')}
+    }
+
+    const toggleInputError = (inputElement: EventTarget & HTMLInputElement): void => {
+      if (!inputElement.validity.valid) {
+        toggleErrorSpan(inputElement, inputElement.validationMessage)
+      } else {
+        toggleErrorSpan(inputElement, '');
+      }
+    }
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     // валидация введенных данных
@@ -68,13 +103,13 @@ function RegistrationForm(): JSX.Element {
   };
 
   return (
-    <form action="" method="get" onSubmit={handleSubmit}>
+    <form id="reg-form" action="" method="get" onSubmit={handleSubmit} noValidate>
       <div className="sign-up">
         <div className="sign-up__load-photo">
           <div className="input-load-avatar">
             <label>
               <input
-                id="certificates"
+                id="avatar"
                 className="visually-hidden"
                 type="file"
                 accept="image/png, image/jpeg"
@@ -104,29 +139,94 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">Имя</span>
               <span className="custom-input__wrapper">
-                <input type="text" name="name"   onChange={(evt) => setName(evt.target.value)} id="reg-name" />
+                <input
+                  id="reg-name"
+                  type="text"
+                  name="name"
+                  pattern="^[a-zA-Zа-яА-ЯЁё]{1,15}$"
+                  data-error-message="Допускаются символы латиницы и кириллицы, от 1 до 15 символов."
+                  minLength={1}
+                  maxLength={15}
+                  required
+                  onChange={(evt) => {
+                    checkInputValidity(evt.target);
+                    setIsNameValid(evt.target.validity.valid);
+                    setName(evt.target.value);
+                  }}
+                  onBlur={(evt) => toggleInputError(evt.target)}
+                  onFocus={(evt) => toggleErrorSpan(evt.target, '')}
+                />
               </span>
+              <span className="form__error reg-name-error"></span>
             </label>
           </div>
           <div className="custom-input">
             <label>
               <span className="custom-input__label">E-mail</span>
               <span className="custom-input__wrapper">
-                <input type="email" name="email" value={email ?? ''} onChange={(evt) => setEmail(evt.target.value)} id="reg-email" />
+                <input
+                  id="reg-email"
+                  type="email"
+                  name="email"
+                  value={email ?? ''}
+                  pattern="\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}"
+                  data-error-message="Укажите корректный адрес электронной почты"
+                  required
+                  onChange={(evt) => {
+                    setEmail(evt.target.value);
+                    checkInputValidity(evt.target);
+                    setIsEmailValid(evt.target.validity.valid);
+                  }}
+                  onBlur={
+                    (evt) => {
+                      toggleInputError(evt.target);
+                    }
+                  }
+                  onFocus={(evt) => toggleErrorSpan(evt.target, '')}
+                />
               </span>
+              <span className="form__error reg-email-error"></span>
             </label>
           </div>
           <div className="custom-input">
             <label>
               <span className="custom-input__label">Дата рождения</span>
               <span className="custom-input__wrapper">
-                <input type="date" name="birthday" max="2099-12-31" value={dateOfBirth ?? ''} onChange={(evt) => setDateOfBirth(evt.target.value)} id="reg-birthday" />
+                <input
+                  id="reg-birthday"
+                  type="date"
+                  name="birthday"
+                  data-error-message="Укажите дату Вашего рождения"
+                  max="2099-12-31"
+                  value={dateOfBirth ?? ''}
+                  onChange={(evt) => {
+                    setDateOfBirth(evt.target.value);
+                    checkInputValidity(evt.target);
+                  }}
+                  onBlur={
+                    (evt) => {
+                      toggleInputError(evt.target);
+                    }
+                  }
+                  onFocus={(evt) => toggleErrorSpan(evt.target, '')}
+                />
               </span>
+              <span className="form__error reg-birthday-error"></span>
             </label>
           </div>
           <div className="custom-select custom-select--not-selected">
             <span className="custom-select__label">Ваша локация</span>
-            <button className="custom-select__button" type="button" aria-label="Выберите одну из опций" onFocus={() => setLocationVisible(true)} onBlur={() => setLocationVisible(false)}>
+            <button
+              className="custom-select__button"
+              type="button"
+              aria-label="Выберите одну из опций"
+              data-error-message="Укажите Вашу локацию"
+              onFocus={(evt) => {
+                setLocationVisible(true);
+                console.log(evt.target.validity);
+              }}
+              onBlur={() => setLocationVisible(false)}
+            >
               <span className="custom-select__text" style={{opacity: 0.5}}>{location}</span>
               <span className="custom-select__icon" >
                 <svg width="15" height="6" aria-hidden="true">
@@ -149,8 +249,27 @@ function RegistrationForm(): JSX.Element {
             <label>
               <span className="custom-input__label">Пароль</span>
               <span className="custom-input__wrapper">
-                <input type="password" name="password" autoComplete="off" value={password ?? ''} onChange={(evt) => setPassword(evt.target.value)} id="reg-password"/>
+                <input
+                  id="reg-password"
+                  type="password"
+                  name="password"
+                  autoComplete="off"
+                  data-error-message="Пароль должен содержать от 6 до 12 символов"
+                  minLength={6}
+                  maxLength={12}
+                  value={password ?? ''}
+                  required
+                  onChange={(evt) => {
+                    checkInputValidity(evt.target);
+                    setPassword(evt.target.value);
+                    setIsPasswordValid(evt.target.validity.valid);
+                    console.log(evt.target.validity);
+                  }}
+                  onBlur={(evt) => toggleInputError(evt.target)}
+                  onFocus={(evt) => toggleErrorSpan(evt.target, '')}
+                />
               </span>
+              <span className="form__error reg-password-error"></span>
             </label>
           </div>
           <div className="sign-up__radio">
@@ -255,9 +374,12 @@ function RegistrationForm(): JSX.Element {
             </span>
           </label>
         </div>
-        <button className="btn sign-up__button" type="submit" disabled={!checkedAgreement}>
+        <button className="btn sign-up__button" type="submit" disabled={
+          !isNameValid || !isEmailValid || !isPasswordValid || !location
+        }>
           Продолжить
         </button>
+        {/* <span className="form__empty-error form__error-active" id="empty-error">{isFormValid ? '' : 'Заполните все поля для отправки формы'}</span> */}
       </div>
     </form>
   );
