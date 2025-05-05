@@ -23,12 +23,14 @@ backend/apps - модули приложений
 backend/libs - библиотеки
 backend/dist - создается в процессе компиляции проекта, в нее помещаются результирующие файлы
 
-Серверная часть состоит из трех микросервисов (МС):
+Серверная часть состоит из четырех микросервисов (МС):
 users - содержит логику работы с пользователем
 trainings - содержит логику работы с тренировками
+files - работа с файлами
 api - является точной входа для фронтэнда
 
 Используется база данных MongoDB
+Загружаемые файлы сохраняются на сервере в директории `backend / apps / files / uploads`
 Для развертывания контейнеров используется Docker
 
 ### Директория `frontend`
@@ -47,7 +49,7 @@ api - является точной входа для фронтэнда
 
 #### Запуск проекта
 
-необходимо запустить все три МС и фронт.
+необходимо запустить все четыре МС и фронт.
 
 ##### запуск МС users
 
@@ -92,6 +94,28 @@ docker compose --file ./apps/trainings/training-compose.dev.yml --project-name "
 
 Файл для тестирование запросов
 backend/libs/training/src/training.http
+
+##### запуск МС files
+
+Команды запуска МС выполняются в терминале из директории backend
+
+```bash
+npx nx run files:serve
+```
+
+команда для подготовки контейнера
+
+```bash
+docker compose --file ./apps/files/file-compose.dev.yml  --project-name "fitfriends-file" --env-file ./apps/files/file.env up -d
+```
+
+После завершения загрузки образов и подготовки контейнеров веб-интерфейс для администрирования MongoDB будет доступен по адресу http://localhost:8085/.
+
+переменные окружения в файле backend/apps/files/file.env
+пример в файле backend/apps/files/file.env-example
+
+Файл для тестирование запросов
+backend/libs/file-uploader/src/file-uploader.http
 
 ##### запуск МС api
 
