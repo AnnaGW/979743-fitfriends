@@ -4,7 +4,8 @@ import { useAppDispatch } from '../../hooks';
 import { UserGender, UserLocation, UserRole } from '../../types';
 import './regform.css';
 import { registrationAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import { AppRoute, Validation} from '../../const';
+import { checkInputValidity, toggleInputError, toggleErrorSpan } from '../../services/validation';
 
 function RegistrationForm(): JSX.Element {
   const [name, setName] = useState<string>('');
@@ -18,66 +19,35 @@ function RegistrationForm(): JSX.Element {
   const [gender, setGender] = useState<string>(UserGender.Unimportant);
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const [location, setLocation] = useState<string>('');
-  const [isLocationNotEmpty, setIsLocationNotEmpty] = useState<boolean>(false);
+  // const [isLocationNotEmpty, setIsLocationNotEmpty] = useState<boolean>(false);
   const [locationVisible, setLocationVisible] = useState<boolean>(false);
   const [role, setRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
 
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-    const toggleErrorSpan = (inputElement: EventTarget & HTMLInputElement, errorMessage: string): void => {
-      const errorElement = document.querySelector(`.${inputElement.id}-error`)
-      if (errorElement) {
-        if (errorMessage !== '') {
-          inputElement.classList.add('form__type-input-error')
-          errorElement.textContent = errorMessage
-          errorElement.classList.add('form__error-active')
-        } else {
-          inputElement.classList.remove('form__type-input-error')
-          errorElement.textContent = ''
-          errorElement.classList.remove('form__error-active')
-        }
-      }
-    }
-
-    const checkInputValidity = (inputElement: EventTarget & HTMLInputElement): void => {
-      if (
-        inputElement.validity.patternMismatch || inputElement.validity.typeMismatch
-        || inputElement.validity.rangeOverflow || inputElement.validity.rangeUnderflow
-        || inputElement.validity.tooLong || inputElement.validity.tooShort
-      ) {
-        inputElement.setCustomValidity(inputElement.dataset.errorMessage ?? 'ошибка')
-      } else {inputElement.setCustomValidity('')}
-    }
-
-    const toggleInputError = (inputElement: EventTarget & HTMLInputElement): void => {
-      if (!inputElement.validity.valid) {
-        toggleErrorSpan(inputElement, inputElement.validationMessage)
-      } else {
-        toggleErrorSpan(inputElement, '');
-      }
-    }
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const formData = new FormData();
-    formData.set('name', name);
-    formData.set('email', email);
-    formData.set('password', password);
-    formData.set('gender', gender);
-    formData.set('dateOfBirth', dateOfBirth);
-    formData.set('location', location);
-    formData.set('role', role);
+    // const formData = new FormData();
+    // formData.set('name', name);
+    // formData.set('email', email);
+    // formData.set('password', password);
+    // formData.set('gender', gender);
+    // formData.set('dateOfBirth', dateOfBirth);
+    // formData.set('location', location);
+    // formData.set('role', role);
     // if (avatarSrc) {formData.set('avatarSrc', avatarSrc);}
-    if (avatarFile) {formData.set('avatar', avatarFile)};
+    // if (avatarFile) {formData.set('avatar', avatarFile)};
 
-    dispatch(registrationAction(formData))
-    .then((serverResult) => {
-      if (serverResult.type === 'user/registration/fulfilled') {
-        // if(serverResult.payload.role === UserRole.Ward) {navigate(AppRoute.QuestionnaireWard)}
-        navigate(AppRoute.QuestionnaireWard);
-      }
-    });
+    // dispatch(registrationAction(formData))
+    // .then((serverResult) => {
+    //   if (serverResult.type === 'user/registration/fulfilled') {
+    //     // if(serverResult.payload.role === UserRole.Ward) {navigate(AppRoute.QuestionnaireWard)}
+    //     navigate(AppRoute.QuestionnaireWard);
+    //   }
+    // });
+    console.log('форма валидна');
   };
 
   return (
@@ -121,6 +91,7 @@ function RegistrationForm(): JSX.Element {
                   id="reg-name"
                   type="text"
                   name="name"
+                  value={name ?? ''}
                   pattern="^[a-zA-Zа-яА-ЯЁё]{1,15}$"
                   data-error-message="Допускаются символы латиницы и кириллицы, от 1 до 15 символов."
                   minLength={1}
@@ -352,7 +323,7 @@ function RegistrationForm(): JSX.Element {
           </label>
         </div>
         <button className="btn sign-up__button" type="submit" disabled={
-          !isNameValid || !isEmailValid || !isPasswordValid || !location
+          !isNameValid || !isEmailValid || !isPasswordValid || !location || !checkedAgreement
         }>
           Продолжить
         </button>

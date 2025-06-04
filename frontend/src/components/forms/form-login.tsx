@@ -1,64 +1,34 @@
 import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
+import { AppRoute, Validation } from '../../const';
 import { useNavigate } from 'react-router-dom';
+import { checkInputValidity, toggleInputError, toggleErrorSpan } from '../../services/validation';
 
 function LoginForm(): JSX.Element {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [emailInvalid, setEmailInvalid] = useState<boolean>(false);
-  const [passwordInvalid, setpasswordInvalid] = useState<boolean>(false);
+  const [passwordInvalid, setPasswordInvalid] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const toggleErrorSpan = (inputElement: EventTarget & HTMLInputElement, errorMessage: string): void => {
-    const errorElement = document.querySelector(`.${inputElement.id}-error`)
-    if (errorElement) {
-      if (errorMessage !== '') {
-        inputElement.classList.add('form__type-input-error')
-        errorElement.textContent = errorMessage
-        errorElement.classList.add('form__error-active')
-      } else {
-        inputElement.classList.remove('form__type-input-error')
-        errorElement.textContent = ''
-        errorElement.classList.remove('form__error-active')
-      }
-    }
-  }
-
-  const toggleInputError = (inputElement: EventTarget & HTMLInputElement): void => {
-    if (!inputElement.validity.valid) {
-      toggleErrorSpan(inputElement, inputElement.validationMessage)
-    } else {
-      toggleErrorSpan(inputElement, '');
-    }
-  }
-
-  const checkInputValidity = (inputElement: EventTarget & HTMLInputElement): void => {
-    if (
-      inputElement.validity.patternMismatch || inputElement.validity.typeMismatch
-      || inputElement.validity.rangeOverflow || inputElement.validity.rangeUnderflow
-      || inputElement.validity.tooLong || inputElement.validity.tooShort
-    ) {
-      inputElement.setCustomValidity(inputElement.dataset.errorMessage ?? 'ошибка')
-    } else {inputElement.setCustomValidity('')}
-  }
-
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-     if (email !== null && password !== null) {
-         dispatch(loginAction({
-           email: email,
-           password: password
-         }))
-         .then((serverRusult) => {
-          if (serverRusult.type === 'user/login/fulfilled') {
-            navigate(AppRoute.Main);
-          }
-        });
-     }
+    //  if (email !== null && password !== null) {
+    //      dispatch(loginAction({
+    //        email: email,
+    //        password: password
+    //      }))
+    //      .then((serverRusult) => {
+    //       if (serverRusult.type === 'user/login/fulfilled') {
+    //         navigate(AppRoute.Main);
+    //       }
+    //     });
+    //  }
+    console.log('форма валидна');
+
   };
 
   return (
@@ -99,12 +69,13 @@ function LoginForm(): JSX.Element {
                 name="password"
                 value={password ?? ''}
                 data-error-message="Пароль должен содержать от 6 до 12 символов"
-                minLength={6}
-                maxLength={12}
+                minLength={Validation.PasswordMinLength}
+                maxLength={Validation.PasswordMaxLength}
                 onChange={(evt) => {
-                  checkInputValidity(evt.target)
+                  checkInputValidity(evt.target);
+
                   setPassword(evt.target.value);
-                  setpasswordInvalid(evt.target.validity.valid);
+                  setPasswordInvalid(evt.target.validity.valid);
                 }}
                 onBlur={(evt) => toggleInputError(evt.target)}
                 onFocus={(evt) => toggleErrorSpan(evt.target, '')}
