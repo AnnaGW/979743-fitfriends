@@ -14,11 +14,21 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const BACKEND_URL = 'http://localhost:4000/api'; //TODO: передать через env, порты в запросах будут разные
+export const BACKEND_URL = 'http://localhost:4000/api';
+
+export const FILE_UPLOAD_URL = 'http://localhost:3335/api';
 
 export const REQUEST_TIMEOUT = 5000;
 
 export const TIMEOUT_SHOW_ERROR = 10000;
+
+export enum APIRoute {
+  Login = 'users-api/login',
+  Logout = 'users-api/logout',
+  Registration = 'users-api/registration',
+  Check = 'users-api/check-auth',
+  SaveFile = 'files/upload',
+}
 
 export enum AUTH_TOKEN {
   Access = 'fitfriends-access-token',
@@ -30,13 +40,6 @@ export enum NameSpace {
   Data = 'DATA', // действия, связанные  запросом и отправкой данных
   Error = 'ERROR', // обработка ошибок сервера
   UserAction = 'USER_ACTION', // действия, связанные с реацией приложения на действия пользователя
-}
-
-export enum APIRoute {
-  Login = 'users-api/login',
-  Logout = 'users-api/logout',
-  Registration = 'users-api/registration',
-  Check = 'users-api/check-auth',
 }
 
 export enum Validation {

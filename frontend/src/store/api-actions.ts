@@ -40,14 +40,13 @@ export const logoutAction = createAsyncThunk<
 
 export const registrationAction = createAsyncThunk<
   TUser,
-  // TRegData,
-  FormData,
+  TRegData,
   {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
   }
->('user/registration', async (newUser: FormData, { extra: api }) => {
+>('user/registration', async (newUser: TRegData, { extra: api }) => {
   const { data } = await api.post<TUser>(APIRoute.Registration, newUser, {
     // const { data } = await api.post<TUser>('http://localhost:3335/api/files/upload', newUser, {
     headers: {

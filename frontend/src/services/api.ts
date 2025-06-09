@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { StatusCodes } from 'http-status-codes';
-import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
+import { BACKEND_URL, REQUEST_TIMEOUT, FILE_UPLOAD_URL } from '../const';
 import { getAccessToken, getRefreshToken } from './token';
 import { processErrorHandle } from './process-error-handle';
 
@@ -45,4 +45,13 @@ export const createAPI = (): AxiosInstance => {
   );
 
   return api;
+};
+
+export const createAPIFiles = (): AxiosInstance => {
+  const apiFiles = axios.create({
+    baseURL: FILE_UPLOAD_URL,
+    timeout: REQUEST_TIMEOUT,
+  });
+
+  return apiFiles;
 };

@@ -4,8 +4,11 @@ import { useAppDispatch } from '../../hooks';
 import { UserGender, UserLocation, UserRole } from '../../types';
 import './regform.css';
 import { registrationAction } from '../../store/api-actions';
-import { AppRoute, Validation} from '../../const';
+import { AppRoute, FILE_UPLOAD_URL, Validation, APIRoute} from '../../const';
 import { checkInputValidity, toggleInputError, toggleErrorSpan } from '../../services/validation';
+import { createAPIFiles } from '../../services/api';
+import { TSavedFile } from '../../types/saved-file-type';
+import { saveFile } from '../../services/saving-files';
 
 function RegistrationForm(): JSX.Element {
   const [name, setName] = useState<string>('');
@@ -14,8 +17,9 @@ function RegistrationForm(): JSX.Element {
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
-  const [avatarSrc, setAvatarSrc] = useState<string>();
+  const [avatarSrc, setAvatarSrc] = useState<string>('');
   const [avatarFile, setAvatarFile] = useState<File>();
+  // const [avatarID, setAvatarID] = useState<string>('');
   const [gender, setGender] = useState<string>(UserGender.Unimportant);
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const [location, setLocation] = useState<string>('');
@@ -27,27 +31,19 @@ function RegistrationForm(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    // const formData = new FormData();
-    // formData.set('name', name);
-    // formData.set('email', email);
-    // formData.set('password', password);
-    // formData.set('gender', gender);
-    // formData.set('dateOfBirth', dateOfBirth);
-    // formData.set('location', location);
-    // formData.set('role', role);
-    // if (avatarSrc) {formData.set('avatarSrc', avatarSrc);}
-    // if (avatarFile) {formData.set('avatar', avatarFile)};
+    const formData = new FormData();
+    if (avatarFile) {
+      formData.set('avatar', avatarFile, avatarFile.name);
+    }
 
-    // dispatch(registrationAction(formData))
-    // .then((serverResult) => {
-    //   if (serverResult.type === 'user/registration/fulfilled') {
-    //     // if(serverResult.payload.role === UserRole.Ward) {navigate(AppRoute.QuestionnaireWard)}
-    //     navigate(AppRoute.QuestionnaireWard);
-    //   }
-    // });
-    console.log('форма валидна');
+    const savedFileInfo = await saveFile(formData);
+    console.log('avatar 2 - ', savedFileInfo);
+
+    const regData = {
+
+    }
   };
 
   return (

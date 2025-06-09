@@ -3,6 +3,19 @@ POST http://localhost:3335/api/files/upload HTTP/1.1
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
+Content-Disposition: form-data; name="avatar"
+
+< D:\PROJECTS\979743-fitfriends\fitfriends-build-vite-2\markup\img\content\avatars\users\photo-1.png
+
+--boundary--
+
+###
+
+# Upload some file - 2
+POST http://localhost:3335/api/files/upload HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
 Content-Disposition: form-data; name="avatar"; filename="file-uploader.model.ts"
 
 < ./file-uploader.model.ts
@@ -10,6 +23,7 @@ Content-Disposition: form-data; name="avatar"; filename="file-uploader.model.ts"
 --boundary--
 
 ###
+
 # Get file by ID
 GET http://localhost:3335/api/files/680d2fabcdf16c9784326cda HTTP/1.1
 
