@@ -5,6 +5,7 @@ export interface UserCommon {
   name: string;
   email: string;
   avatar?: string;
+  avatarID?: string;
   dateOfBirth?: Date;
   location: UserLocation;
   gender: UserGender;

@@ -4,7 +4,6 @@ import { TUser } from '../types/user';
 
 //меняет статус авторизации noAuth на Auth и выводит в консоль текущий статус авторизации
 export const userInfo = createAction('user/info', (value: TUser) => {
-  console.log(value);
   return {
     payload: value,
     currentDate: new Date(),

@@ -30,9 +30,26 @@ function App(): JSX.Element {
 
           <Route path={AppRoute.Registration} element={<Registration />} />
 
-          <Route path={AppRoute.QuestionnaireWard} element={<QuestionnaireWardPage />} />
+          <Route
+            path={AppRoute.QuestionnaireWard}
+            element={
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <QuestionnaireWardPage />
+            </PrivateRoute>
+            }
+          />
 
-          <Route path={AppRoute.QuestionnaireCoach} element={<QuestionnaireCoachPage />} />
+
+
+          <Route
+            path={AppRoute.QuestionnaireCoach}
+            element={
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <QuestionnaireCoachPage />
+              </PrivateRoute>
+            }
+          />
+
 
           <Route path='*' element={<Error404 />} />
         </Routes>

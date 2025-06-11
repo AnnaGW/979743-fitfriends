@@ -26,8 +26,6 @@ export class FileUploaderController {
     @Body() fileInfo,
     @UploadedFile() file: Express.Multer.File
   ) {
-    console.log('Что пришло в контроллер fileInfo - ', fileInfo);
-    console.log('Что пришло в контроллер file - ', file);
     const fileEntity = await this.fileUploaderService.saveFile(file);
     return fillDto(UploadedFileRdo, fileEntity.toPOJO());
   }

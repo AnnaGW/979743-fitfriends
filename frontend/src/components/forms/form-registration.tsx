@@ -1,14 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { UserGender, UserLocation, UserRole } from '../../types';
 import './regform.css';
 import { registrationAction } from '../../store/api-actions';
-import { AppRoute, FILE_UPLOAD_URL, Validation, APIRoute} from '../../const';
+import { AppRoute } from '../../const';
 import { checkInputValidity, toggleInputError, toggleErrorSpan } from '../../services/validation';
-import { createAPIFiles } from '../../services/api';
-import { TSavedFile } from '../../types/saved-file-type';
 import { saveFile } from '../../services/saving-files';
+import { TRegData } from '../../types/reg-data';
 
 function RegistrationForm(): JSX.Element {
   const [name, setName] = useState<string>('');
@@ -19,11 +18,9 @@ function RegistrationForm(): JSX.Element {
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
   const [avatarSrc, setAvatarSrc] = useState<string>('');
   const [avatarFile, setAvatarFile] = useState<File>();
-  // const [avatarID, setAvatarID] = useState<string>('');
   const [gender, setGender] = useState<string>(UserGender.Unimportant);
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const [location, setLocation] = useState<string>('');
-  // const [isLocationNotEmpty, setIsLocationNotEmpty] = useState<boolean>(false);
   const [locationVisible, setLocationVisible] = useState<boolean>(false);
   const [role, setRole] = useState<string>(UserRole.Coach);
   const [checkedAgreement, setCheckedAgreement] = useState<boolean>(false);
@@ -33,17 +30,38 @@ function RegistrationForm(): JSX.Element {
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const formData = new FormData();
-    if (avatarFile) {
-      formData.set('avatar', avatarFile, avatarFile.name);
-    }
-
-    const savedFileInfo = await saveFile(formData);
-    console.log('avatar 2 - ', savedFileInfo);
+    let newUser: TRegData;
 
     const regData = {
-
+      name: name,
+      email: email,
+      password: password,
+      gender: gender,
+      location: location,
+      role: role,
     }
+    if (avatarFile) {
+      const formData = new FormData();
+      formData.set('avatar', avatarFile, avatarFile.name);
+      const savedFileInfo = await saveFile(formData);
+      newUser = {...regData, avatar: savedFileInfo.originalName, avatarID: savedFileInfo.id};
+    } else {
+      newUser = {...regData };
+    }
+
+    if (dateOfBirth) {
+      newUser = {...newUser, dateOfBirth: dateOfBirth};
+    }
+    dispatch(registrationAction(newUser))
+    .then((serverResult) => {
+      if (serverResult.type === "user/registration/fulfilled") {
+        if (newUser.role === UserRole.Ward) {
+          navigate(AppRoute.QuestionnaireWard)
+        } else if (newUser.role === UserRole.Coach) {
+          navigate(AppRoute.QuestionnaireCoach)
+        };
+      }
+    });
   };
 
   return (
@@ -166,9 +184,8 @@ function RegistrationForm(): JSX.Element {
               type="button"
               aria-label="Выберите одну из опций"
               data-error-message="Укажите Вашу локацию"
-              onFocus={(evt) => {
+              onFocus={() => {
                 setLocationVisible(true);
-                console.log(evt.target.validity);
               }}
               onBlur={() => setLocationVisible(false)}
             >

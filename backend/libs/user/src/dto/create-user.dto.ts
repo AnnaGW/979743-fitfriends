@@ -45,6 +45,10 @@ export class CreateUserCommonDto {
   public avatar?: string;
 
   @IsOptional()
+  @IsString()
+  public avatarID?: string;
+
+  @IsOptional()
   @IsISO8601({}, { message: AuthenticationValidateMessage.DateBirthNotValid })
   public dateOfBirth?: string;
 

@@ -7,6 +7,5 @@ export const saveFile = async (formData: FormData) => {
   await apiFiles.post<TSavedFile>(APIRoute.SaveFile, formData).then((response) => {
     serverResponse = response.data;
   });
-
   return serverResponse;
 };

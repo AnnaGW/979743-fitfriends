@@ -37,6 +37,9 @@ export class UserModel extends Document implements User {
   public avatar: string;
 
   @Prop()
+  public avatarID: string;
+
+  @Prop()
   public dateOfBirth: Date;
 
   @Prop({

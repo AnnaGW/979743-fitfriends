@@ -47,15 +47,8 @@ export const registrationAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/registration', async (newUser: TRegData, { extra: api }) => {
-  const { data } = await api.post<TUser>(APIRoute.Registration, newUser, {
-    // const { data } = await api.post<TUser>('http://localhost:3335/api/files/upload', newUser, {
-    headers: {
-      // 'Content-Type': 'multipart/form-data',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-      // 'Content-Type': 'multipart/form-data; boundary=boundary',
-      // 'Content-Disposition': `form-data; name="avatar"; filename=${newUser.get('avatar')}`,
-    },
-  });
+  const { data } = await api.post<TUser>(APIRoute.Registration, newUser);
+
   saveToken({
     accessToken: data.accessToken,
     refreshToken: data.refreshToken,

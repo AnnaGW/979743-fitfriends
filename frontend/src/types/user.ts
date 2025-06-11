@@ -1,4 +1,4 @@
-import { UserGender, UserLocation } from '../types';
+import { UserGender, UserLocation, UserRole } from '../types';
 
 export type TUser = {
   id?: string;
@@ -8,6 +8,7 @@ export type TUser = {
   gender: UserGender;
   dateOfBirth?: string;
   location: UserLocation;
+  role: UserRole;
   createdAt: string;
   refreshToken: string;
   accessToken: string;

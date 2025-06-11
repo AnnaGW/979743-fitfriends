@@ -16,6 +16,7 @@ import { CreateUserCommonDto, LoginUserDto } from '@backend/user';
 
 import { ApplicationServiceURL } from './configuration/api.config';
 import { AxiosExceptionFilter } from './filters/axios-exception.filter';
+import { UserCommon } from '@backend/core';
 
 type savedFile = {
   fileName: string;
@@ -41,10 +42,6 @@ export class UsersApiController {
     @Body() fileInfo,
     @UploadedFile() file: Express.Multer.File
   ) {
-    console.log('Что пришло в контроллер api - fileInfo - ', fileInfo);
-    console.log('Что пришло в контроллер api - file - ', file);
-    // const formData = new FormData();
-    // formData.set('avatar', file.buffer);
     const { data } = await this.httpService.axiosRef.post(
       'http://localhost:3335/api/files/upload',
       file,
@@ -54,29 +51,16 @@ export class UsersApiController {
         },
       }
     );
-    console.log('что вернул files в api - ', data);
     return data;
   }
 
   @Post('registration')
   @UseInterceptors(FileInterceptor('avatar'))
-  public async registration(
-    @Body() newUser,
-    @UploadedFile() file: Express.Multer.File
-  ) {
+  public async registration(@Body() newUser: CreateUserCommonDto) {
     const { data } = await this.httpService.axiosRef.post(
-      'http://localhost:3335/api/files/upload',
-      file,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data; boundary=boundary',
-        },
-      }
+      `${ApplicationServiceURL.Users}/register`,
+      newUser
     );
-    // const { data } = await this.httpService.axiosRef.post(
-    //   `${ApplicationServiceURL.Users}/register`,
-    //   newUserDto
-    // );
     return data;
   }
 

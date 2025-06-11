@@ -14,6 +14,9 @@ export class UserCommonRdo {
   public avatar?: string;
 
   @Expose()
+  public avatarID?: string;
+
+  @Expose()
   public gender: string;
 
   @Expose()

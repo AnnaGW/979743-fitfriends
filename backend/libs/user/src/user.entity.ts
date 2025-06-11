@@ -18,6 +18,7 @@ export class UserEntity extends Entity implements StorableEntity<Coach & Ward> {
   public email: string;
   public passwordHash: string;
   public avatar?: string;
+  public avatarID?: string;
   public dateOfBirth?: Date;
   public location: UserLocation;
   public gender: UserGender;
@@ -48,6 +49,7 @@ export class UserEntity extends Entity implements StorableEntity<Coach & Ward> {
     this.email = user.email;
     this.name = user.name;
     this.avatar = user.avatar;
+    this.avatarID = user.avatarID;
     this.passwordHash = user.passwordHash;
     this.gender = user.gender;
     this.dateOfBirth = user.dateOfBirth;
@@ -73,6 +75,7 @@ export class UserEntity extends Entity implements StorableEntity<Coach & Ward> {
       email: this.email,
       name: this.name,
       avatar: this.avatar,
+      avatarID: this.avatarID,
       passwordHash: this.passwordHash,
       gender: this.gender,
       dateOfBirth: this.dateOfBirth,
