@@ -1,34 +1,25 @@
 import {
   IsEmail,
-  IsISO8601,
-  IsOptional,
   IsString,
-  MinLength,
-  MaxLength,
   IsEnum,
-  Matches,
   IsNumber,
-  IsBoolean,
+  IsArray,
   Min,
   Max,
 } from 'class-validator';
-import {
-  Role,
-  TrainingDuration,
-  TrainingLevel,
-  TrainingType,
-  UserGender,
-} from '@backend/core';
-import {
-  AuthenticationValidateMessage,
-  UserDtoValidation,
-} from '../user.constant';
-import { UserLocation } from '@backend/core';
-
+import { TrainingDuration, TrainingLevel, TrainingType } from '@backend/core';
+import { AuthenticationValidateMessage } from '../user.constant';
 export class UpdateWardDto {
-  @IsEnum(TrainingType)
   @IsString()
-  public trainingType: TrainingType;
+  public userID: string;
+
+  @IsEmail({}, { message: AuthenticationValidateMessage.EmailNotValid })
+  @IsString()
+  public email: string;
+
+  @IsArray({ message: AuthenticationValidateMessage.EmailNotValid })
+  @IsEnum(TrainingType, { each: true })
+  public trainingType: TrainingType[];
 
   @IsEnum(TrainingDuration)
   @IsString()

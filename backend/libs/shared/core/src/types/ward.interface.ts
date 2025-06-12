@@ -6,7 +6,7 @@ import { TrainingDuration } from './training-duration.enum';
 export interface Ward extends AuthUserCommon {
   description?: string;
   backgroundImg?: string;
-  trainingType?: TrainingType;
+  trainingType?: TrainingType[];
   trainingLevel?: TrainingLevel;
   trainingDuration?: TrainingDuration;
   calories?: number;

@@ -5,7 +5,7 @@ import { TrainingLevel } from './training-level.enum';
 export interface Coach extends AuthUserCommon {
   description?: string;
   backgroundImg?: string;
-  trainingType?: TrainingType;
+  trainingType?: TrainingType[];
   trainingLevel?: TrainingLevel;
   coachMerits?: string;
   isPersonalCoach?: boolean;

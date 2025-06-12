@@ -24,6 +24,8 @@ import {
   AUTH_USER_NOT_FOUND,
   AUTH_USER_PASSWORD_WRONG,
 } from './user.constant';
+import { UpdateCoachDto } from './dto/update-coach.dto';
+import { UpdateWardDto } from './dto/update-ward.dto';
 
 type User = Ward & Coach;
 
@@ -143,5 +145,32 @@ export class UserService {
 
   public async deleteUserToken(tokenId: string): Promise<void> {
     //обращение к сервису refreshTokenService
+  }
+
+  public async updateCoach(dto: UpdateCoachDto): Promise<UserEntity> {
+    const existUserEntity = await this.userRepository.findByEmail(dto.email);
+
+    if (!existUserEntity) {
+      throw new ConflictException(AUTH_USER_NOT_FOUND);
+    }
+    const updatedUser = { ...existUserEntity.toPOJO(), ...dto };
+    existUserEntity.populate(updatedUser);
+
+    await this.userRepository.update(existUserEntity);
+
+    return existUserEntity;
+  }
+  public async updateWard(dto: UpdateWardDto): Promise<UserEntity> {
+    const existUserEntity = await this.userRepository.findByEmail(dto.email);
+
+    if (!existUserEntity) {
+      throw new ConflictException(AUTH_USER_NOT_FOUND);
+    }
+    const updatedUser = { ...existUserEntity.toPOJO(), ...dto };
+    existUserEntity.populate(updatedUser);
+
+    await this.userRepository.update(existUserEntity);
+
+    return existUserEntity;
   }
 }

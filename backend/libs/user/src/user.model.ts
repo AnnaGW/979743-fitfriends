@@ -77,10 +77,9 @@ export class UserModel extends Document implements User {
   public createdAt: Date;
 
   @Prop({
-    type: String,
-    enum: TrainingType,
+    type: Array,
   })
-  public trainingType: TrainingType;
+  public trainingType: TrainingType[];
 
   @Prop({
     type: String,

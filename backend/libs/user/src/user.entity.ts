@@ -27,7 +27,7 @@ export class UserEntity extends Entity implements StorableEntity<Coach & Ward> {
   public description?: string;
   public backgroundImg?: string;
   public trainingLevel?: TrainingLevel;
-  public trainingType?: TrainingType;
+  public trainingType?: TrainingType[];
   public trainingDuration?: TrainingDuration;
   public calories?: number;
   public caloriesPerDay?: number;

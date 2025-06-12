@@ -1,17 +1,29 @@
 import {
   IsOptional,
   IsString,
+  IsArray,
   MinLength,
   MaxLength,
   IsEnum,
+  IsEmail,
 } from 'class-validator';
 import { TrainingLevel, TrainingType } from '@backend/core';
-import { UserDtoValidation } from '../user.constant';
+import {
+  AuthenticationValidateMessage,
+  UserDtoValidation,
+} from '../user.constant';
 
 export class UpdateCoachDto {
-  @IsEnum(TrainingType)
   @IsString()
-  public trainingType: TrainingType;
+  public userID: string;
+
+  @IsEmail({}, { message: AuthenticationValidateMessage.EmailNotValid })
+  @IsString()
+  public email: string;
+
+  @IsArray({ message: AuthenticationValidateMessage.EmailNotValid })
+  @IsEnum(TrainingType, { each: true })
+  public trainingType: TrainingType[];
 
   @IsEnum(TrainingLevel)
   @IsString()

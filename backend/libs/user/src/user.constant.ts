@@ -21,6 +21,7 @@ export const AuthenticationValidateMessage = {
     'valid values ​​for field "location" are: «Пионерская», «Петроградская», «Удельная», «Звёздная», «Спортивная»',
   BgImgFileTypeNotValid: 'valid file type for background image are .jpg or png',
   AvatarFileTypeNotValid: 'valid file type for avatar are .jpg or png',
+  TrainingsTypeArrayLengthNotValid: 'Max length of Trainings Type Array is 3',
 } as const;
 
 export enum UserDtoValidation {

@@ -2,6 +2,7 @@ import {
   Controller,
   Body,
   Post,
+  Put,
   Get,
   Param,
   Req,
@@ -21,6 +22,10 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
 import { RequestWithUser } from './request-with-user.interface';
 import { RequestWithTokenPayload } from './request-with-token-payload.interface';
+import { UpdateCoachDto } from './dto/update-coach.dto';
+import { UpdateWardDto } from './dto/update-ward.dto';
+import { UpdatedCoachRdo } from './rdo/updated-coach.rdo';
+import { log } from 'console';
 
 @Controller('user')
 export class UserController {
@@ -31,6 +36,18 @@ export class UserController {
     const newUser = await this.userService.register(dto);
     const userToken = await this.userService.createUserToken(newUser);
     return fillDto(UserCommonRdo, { ...newUser.toPOJO(), ...userToken });
+  }
+
+  @Put('update-coach')
+  public async updateCoach(@Body() dto: UpdateCoachDto) {
+    const updatedUser = await this.userService.updateCoach(dto);
+    return fillDto(UpdatedCoachRdo, { ...updatedUser });
+  }
+
+  @Put('update-ward')
+  public async updateWard(@Body() dto: UpdateWardDto) {
+    const updatedUser = await this.userService.updateWard(dto);
+    return fillDto(UpdatedCoachRdo, { ...updatedUser });
   }
 
   @Post('login')
@@ -51,7 +68,6 @@ export class UserController {
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   public async refreshToken(@Req() { user }: RequestWithUser) {
-    console.log('что приходит при запросе на refresh токен - ', user);
     return this.userService.createUserToken(user);
   }
 

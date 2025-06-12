@@ -18,7 +18,7 @@ export interface TokenPayload {
   createdAt: Date;
   description?: string;
   backgroundImg?: string;
-  trainingType?: TrainingType;
+  trainingType?: TrainingType[];
   trainingLevel?: TrainingLevel;
   trainingDuration?: TrainingDuration;
   calories?: number;
