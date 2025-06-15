@@ -7,7 +7,7 @@ import {
   TrainingLevel,
 } from '@backend/core';
 export interface TokenPayload {
-  sub: string;
+  id: string;
   name: string;
   email: string;
   avatar?: string;

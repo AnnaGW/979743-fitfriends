@@ -24,6 +24,7 @@
 
 /* Для отображения span-элемента с ошибкой */
 .form__error-active {
+  padding-top: 10px;
   display: block;
   font-style: italic;
   font-size: 14px;

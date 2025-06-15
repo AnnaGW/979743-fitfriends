@@ -6,6 +6,8 @@ import { TAuthData } from '../types/auth-data.js';
 import { saveToken, dropToken } from '../services/token.js';
 import { TUser } from '../types/user.js';
 import { TRegData } from '../types/reg-data.js';
+import { TQuestionnarieCoachData } from '../types/questionnarie-coach-data.js';
+import { TQuestionnarieWardData } from '../types/questionnarie-ward-data.js';
 
 export const loginAction = createAsyncThunk<
   TUser,
@@ -66,5 +68,31 @@ export const checkAuthAction = createAsyncThunk<
   }
 >('user/checkAuth', async (_arg, { extra: api }) => {
   const { data } = await api.post<TUser>(APIRoute.Check);
+  return data;
+});
+
+export const updateCoach = createAsyncThunk<
+  TUser,
+  TQuestionnarieCoachData,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('user/updateCoach', async (updatedUser: TQuestionnarieCoachData, { extra: api }) => {
+  const { data } = await api.put<TUser>(APIRoute.UpdateCoach, updatedUser);
+  return data;
+});
+
+export const updateWard = createAsyncThunk<
+  TUser,
+  TQuestionnarieWardData,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('user/updateWard', async (_arg, { extra: api }) => {
+  const { data } = await api.put<TUser>(APIRoute.UpdateWard);
   return data;
 });

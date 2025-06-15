@@ -4,7 +4,7 @@ type User = Ward & Coach;
 
 export function createJWTPayload(user: User): TokenPayload {
   return {
-    sub: user.id,
+    id: user.id,
     name: user.name,
     email: user.email,
     avatar: user.avatar,

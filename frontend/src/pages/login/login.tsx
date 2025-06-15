@@ -1,4 +1,4 @@
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
@@ -11,11 +11,10 @@ function Login(): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('authorizationStatus в Login - ', authorizationStatus);
     if (authorizationStatus === AuthorizationStatus.Auth) {
       navigate(AppRoute.Main);
     }
-  },[authorizationStatus, navigate]);
+  }, [authorizationStatus, navigate]);
 
   return (
     <>
@@ -25,20 +24,10 @@ function Login(): JSX.Element {
       <div className="wrapper">
         <main>
           <div className="background-logo">
-            <svg
-              className="background-logo__logo"
-              width="750"
-              height="284"
-              aria-hidden="true"
-            >
+            <svg className="background-logo__logo" width="750" height="284" aria-hidden="true">
               <use xlinkHref="#logo-big"></use>
             </svg>
-            <svg
-              className="background-logo__icon"
-              width="343"
-              height="343"
-              aria-hidden="true"
-            >
+            <svg className="background-logo__icon" width="343" height="343" aria-hidden="true">
               <use xlinkHref="#icon-logotype"></use>
             </svg>
           </div>

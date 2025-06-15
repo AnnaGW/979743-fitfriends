@@ -1,4 +1,4 @@
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import { MainMenuItem } from '../../types/main-menu-active-element';
 
@@ -9,34 +9,21 @@ function MainPage(): JSX.Element {
         <title>FitFriends</title>
       </Helmet>
       <div className="wrapper">
-        <Header menuActiveElement = {MainMenuItem.Home}/>
+        <Header menuActiveElement={MainMenuItem.Home} />
         <main>
-          <h1 className="visually-hidden">
-            FitFriends — Время находить тренировки, спортзалы и друзей
-            спортсменов
-          </h1>
+          <h1 className="visually-hidden">FitFriends — Время находить тренировки, спортзалы и друзей спортсменов</h1>
           <section className="special-for-you">
             <div className="container">
               <div className="special-for-you__wrapper">
                 <div className="special-for-you__title-wrapper">
-                  <h2 className="special-for-you__title">
-                    Специально подобрано для вас
-                  </h2>
+                  <h2 className="special-for-you__title">Специально подобрано для вас</h2>
                   <div className="special-for-you__controls">
-                    <button
-                      className="btn-icon special-for-you__control"
-                      type="button"
-                      aria-label="previous"
-                    >
+                    <button className="btn-icon special-for-you__control" type="button" aria-label="previous">
                       <svg width="16" height="14" aria-hidden="true">
                         <use xlinkHref="#arrow-left"></use>
                       </svg>
                     </button>
-                    <button
-                      className="btn-icon special-for-you__control"
-                      type="button"
-                      aria-label="next"
-                    >
+                    <button className="btn-icon special-for-you__control" type="button" aria-label="next">
                       <svg width="16" height="14" aria-hidden="true">
                         <use xlinkHref="#arrow-right"></use>
                       </svg>
@@ -64,10 +51,7 @@ function MainPage(): JSX.Element {
                       <div className="thumbnail-preview__inner">
                         <h3 className="thumbnail-preview__title">crossfit</h3>
                         <div className="thumbnail-preview__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-preview__button"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-preview__button" href="#">
                             Подробнее
                           </a>
                         </div>
@@ -94,10 +78,7 @@ function MainPage(): JSX.Element {
                       <div className="thumbnail-preview__inner">
                         <h3 className="thumbnail-preview__title">power</h3>
                         <div className="thumbnail-preview__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-preview__button"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-preview__button" href="#">
                             Подробнее
                           </a>
                         </div>
@@ -124,10 +105,7 @@ function MainPage(): JSX.Element {
                       <div className="thumbnail-preview__inner">
                         <h3 className="thumbnail-preview__title">boxing</h3>
                         <div className="thumbnail-preview__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-preview__button"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-preview__button" href="#">
                             Подробнее
                           </a>
                         </div>
@@ -163,23 +141,15 @@ function MainPage(): JSX.Element {
                           </svg>
                         </div>
                       </div>
-                      <span className="promo-slider__text">
-                        Горячие предложения на тренировки на фитболе
-                      </span>
+                      <span className="promo-slider__text">Горячие предложения на тренировки на фитболе</span>
                       <div className="promo-slider__bottom-container">
                         <div className="promo-slider__slider-dots">
                           <button
                             className="promo-slider__slider-dot--active promo-slider__slider-dot"
                             aria-label="первый слайд"
                           ></button>
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="второй слайд"
-                          ></button>
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="третий слайд"
-                          ></button>
+                          <button className="promo-slider__slider-dot" aria-label="второй слайд"></button>
+                          <button className="promo-slider__slider-dot" aria-label="третий слайд"></button>
                         </div>
                         <div className="promo-slider__price-container">
                           <p className="promo-slider__price">1600 ₽</p>
@@ -210,23 +180,16 @@ function MainPage(): JSX.Element {
                         </div>
                       </div>
                       <span className="promo-slider__text">
-                        Горячие предложения на&nbsp;Тренировки с&nbsp;резинкой
-                        для фитнеса
+                        Горячие предложения на&nbsp;Тренировки с&nbsp;резинкой для фитнеса
                       </span>
                       <div className="promo-slider__bottom-container">
                         <div className="promo-slider__slider-dots">
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="первый слайд"
-                          ></button>
+                          <button className="promo-slider__slider-dot" aria-label="первый слайд"></button>
                           <button
                             className="promo-slider__slider-dot--active promo-slider__slider-dot"
                             aria-label="второй слайд"
                           ></button>
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="третий слайд"
-                          ></button>
+                          <button className="promo-slider__slider-dot" aria-label="третий слайд"></button>
                         </div>
                         <div className="promo-slider__price-container">
                           <p className="promo-slider__price">2400 ₽</p>
@@ -249,9 +212,7 @@ function MainPage(): JSX.Element {
                         />
                       </div>
                       <div className="promo-slider__header">
-                        <h3 className="promo-slider__title">
-                          Full Body Stretch
-                        </h3>
+                        <h3 className="promo-slider__title">Full Body Stretch</h3>
                         <div className="promo-slider__logo">
                           <svg width="74" height="74" aria-hidden="true">
                             <use xlinkHref="#logotype"></use>
@@ -259,19 +220,12 @@ function MainPage(): JSX.Element {
                         </div>
                       </div>
                       <span className="promo-slider__text">
-                        Горячие предложения на&nbsp;Комплекс упражнений
-                        на&nbsp;растяжку всего тела для новичков
+                        Горячие предложения на&nbsp;Комплекс упражнений на&nbsp;растяжку всего тела для новичков
                       </span>
                       <div className="promo-slider__bottom-container">
                         <div className="promo-slider__slider-dots">
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="первый слайд"
-                          ></button>
-                          <button
-                            className="promo-slider__slider-dot"
-                            aria-label="второй слайд"
-                          ></button>
+                          <button className="promo-slider__slider-dot" aria-label="первый слайд"></button>
+                          <button className="promo-slider__slider-dot" aria-label="второй слайд"></button>
                           <button
                             className="promo-slider__slider-dot--active promo-slider__slider-dot"
                             aria-label="третий слайд"
@@ -305,9 +259,7 @@ function MainPage(): JSX.Element {
                   {/* <!-- <p className="thumbnail-spec-gym__type">Ближайший зал</p> --> */}
                   {/* <div className="thumbnail-spec-gym__header", align ="center", > */}
                   <div className="thumbnail-spec-gym__header">
-                    <h3 className="thumbnail-spec-gym__title">
-                      Скоро здесь появится что - то полезное
-                    </h3>
+                    <h3 className="thumbnail-spec-gym__title">Скоро здесь появится что - то полезное</h3>
                   </div>
                 </div>
               </div>
@@ -317,33 +269,20 @@ function MainPage(): JSX.Element {
             <div className="container">
               <div className="popular-trainings__wrapper">
                 <div className="popular-trainings__title-wrapper">
-                  <h2 className="popular-trainings__title">
-                    Популярные тренировки
-                  </h2>
-                  <button
-                    className="btn-flat popular-trainings__button"
-                    type="button"
-                  >
+                  <h2 className="popular-trainings__title">Популярные тренировки</h2>
+                  <button className="btn-flat popular-trainings__button" type="button">
                     <span>Смотреть все</span>
                     <svg width="14" height="10" aria-hidden="true">
                       <use xlinkHref="#arrow-right"></use>
                     </svg>
                   </button>
                   <div className="popular-trainings__controls">
-                    <button
-                      className="btn-icon popular-trainings__control"
-                      type="button"
-                      aria-label="previous"
-                    >
+                    <button className="btn-icon popular-trainings__control" type="button" aria-label="previous">
                       <svg width="16" height="14" aria-hidden="true">
                         <use xlinkHref="#arrow-left"></use>
                       </svg>
                     </button>
-                    <button
-                      className="btn-icon popular-trainings__control"
-                      type="button"
-                      aria-label="next"
-                    >
+                    <button className="btn-icon popular-trainings__control" type="button" aria-label="next">
                       <svg width="16" height="14" aria-hidden="true">
                         <use xlinkHref="#arrow-right"></use>
                       </svg>
@@ -370,14 +309,10 @@ function MainPage(): JSX.Element {
                           </picture>
                         </div>
                         <p className="thumbnail-training__price">
-                          <span className="thumbnail-training__price-value">
-                            1600
-                          </span>
+                          <span className="thumbnail-training__price-value">1600</span>
                           <span>₽</span>
                         </p>
-                        <h3 className="thumbnail-training__title">
-                          run, forrest, run
-                        </h3>
+                        <h3 className="thumbnail-training__title">run, forrest, run</h3>
                         <div className="thumbnail-training__info">
                           <ul className="thumbnail-training__hashtags-list">
                             <li className="thumbnail-training__hashtags-item">
@@ -395,29 +330,20 @@ function MainPage(): JSX.Element {
                             <svg width="16" height="16" aria-hidden="true">
                               <use xlinkHref="#icon-star"></use>
                             </svg>
-                            <span className="thumbnail-training__rate-value">
-                              5
-                            </span>
+                            <span className="thumbnail-training__rate-value">5</span>
                           </div>
                         </div>
                         <div className="thumbnail-training__text-wrapper">
                           <p className="thumbnail-training__text">
-                            Узнайте правильную технику бега, развивайте
-                            выносливость и&nbsp;откройте для себя все секреты
-                            длительных пробежек.
+                            Узнайте правильную технику бега, развивайте выносливость и&nbsp;откройте для себя все
+                            секреты длительных пробежек.
                           </p>
                         </div>
                         <div className="thumbnail-training__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-training__button-catalog" href="#">
                             Подробнее
                           </a>
-                          <a
-                            className="btn btn--small btn--outlined thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small btn--outlined thumbnail-training__button-catalog" href="#">
                             Отзывы
                           </a>
                         </div>
@@ -443,9 +369,7 @@ function MainPage(): JSX.Element {
                           </picture>
                         </div>
                         <p className="thumbnail-training__price">
-                          <span className="thumbnail-training__price-value">
-                            1600
-                          </span>
+                          <span className="thumbnail-training__price-value">1600</span>
                           <span>₽</span>
                         </p>
                         <h3 className="thumbnail-training__title">fitball</h3>
@@ -466,29 +390,20 @@ function MainPage(): JSX.Element {
                             <svg width="16" height="16" aria-hidden="true">
                               <use xlinkHref="#icon-star"></use>
                             </svg>
-                            <span className="thumbnail-training__rate-value">
-                              5
-                            </span>
+                            <span className="thumbnail-training__rate-value">5</span>
                           </div>
                         </div>
                         <div className="thumbnail-training__text-wrapper">
                           <p className="thumbnail-training__text">
-                            Тренировка на&nbsp;фитболе&nbsp;&mdash; отличном
-                            тренажере для развития чувства баланса
+                            Тренировка на&nbsp;фитболе&nbsp;&mdash; отличном тренажере для развития чувства баланса
                             и&nbsp;равновесия, улучшения координации.
                           </p>
                         </div>
                         <div className="thumbnail-training__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-training__button-catalog" href="#">
                             Подробнее
                           </a>
-                          <a
-                            className="btn btn--small btn--outlined thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small btn--outlined thumbnail-training__button-catalog" href="#">
                             Отзывы
                           </a>
                         </div>
@@ -514,14 +429,10 @@ function MainPage(): JSX.Element {
                           </picture>
                         </div>
                         <p className="thumbnail-training__price">
-                          <span className="thumbnail-training__price-value">
-                            2200
-                          </span>
+                          <span className="thumbnail-training__price-value">2200</span>
                           <span>₽</span>
                         </p>
-                        <h3 className="thumbnail-training__title">
-                          devil&#39s cindy
-                        </h3>
+                        <h3 className="thumbnail-training__title">devil&#39s cindy</h3>
                         <div className="thumbnail-training__info">
                           <ul className="thumbnail-training__hashtags-list">
                             <li className="thumbnail-training__hashtags-item">
@@ -539,29 +450,20 @@ function MainPage(): JSX.Element {
                             <svg width="16" height="16" aria-hidden="true">
                               <use xlinkHref="#icon-star"></use>
                             </svg>
-                            <span className="thumbnail-training__rate-value">
-                              5
-                            </span>
+                            <span className="thumbnail-training__rate-value">5</span>
                           </div>
                         </div>
                         <div className="thumbnail-training__text-wrapper">
                           <p className="thumbnail-training__text">
-                            Знаменитый кроссфит комплекс. Синди&nbsp;&mdash;
-                            универсальная тренировка для развития функциональной
-                            силы.
+                            Знаменитый кроссфит комплекс. Синди&nbsp;&mdash; универсальная тренировка для развития
+                            функциональной силы.
                           </p>
                         </div>
                         <div className="thumbnail-training__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-training__button-catalog" href="#">
                             Подробнее
                           </a>
-                          <a
-                            className="btn btn--small btn--outlined thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small btn--outlined thumbnail-training__button-catalog" href="#">
                             Отзывы
                           </a>
                         </div>
@@ -587,14 +489,10 @@ function MainPage(): JSX.Element {
                           </picture>
                         </div>
                         <p className="thumbnail-training__price">
-                          <span className="thumbnail-training__price-value">
-                            1800
-                          </span>
+                          <span className="thumbnail-training__price-value">1800</span>
                           <span>₽</span>
                         </p>
-                        <h3 className="thumbnail-training__title">
-                          full body stretch
-                        </h3>
+                        <h3 className="thumbnail-training__title">full body stretch</h3>
                         <div className="thumbnail-training__info">
                           <ul className="thumbnail-training__hashtags-list">
                             <li className="thumbnail-training__hashtags-item">
@@ -612,29 +510,20 @@ function MainPage(): JSX.Element {
                             <svg width="16" height="16" aria-hidden="true">
                               <use xlinkHref="#icon-star"></use>
                             </svg>
-                            <span className="thumbnail-training__rate-value">
-                              5
-                            </span>
+                            <span className="thumbnail-training__rate-value">5</span>
                           </div>
                         </div>
                         <div className="thumbnail-training__text-wrapper">
                           <p className="thumbnail-training__text">
-                            Комплекс упражнений на&nbsp;растяжку всего тела для
-                            новичков. Плавное погружение в&nbsp;стретчинг
-                            и&nbsp;умеренная нагрузка.
+                            Комплекс упражнений на&nbsp;растяжку всего тела для новичков. Плавное погружение
+                            в&nbsp;стретчинг и&nbsp;умеренная нагрузка.
                           </p>
                         </div>
                         <div className="thumbnail-training__button-wrapper">
-                          <a
-                            className="btn btn--small thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small thumbnail-training__button-catalog" href="#">
                             Подробнее
                           </a>
-                          <a
-                            className="btn btn--small btn--outlined thumbnail-training__button-catalog"
-                            href="#"
-                          >
+                          <a className="btn btn--small btn--outlined thumbnail-training__button-catalog" href="#">
                             Отзывы
                           </a>
                         </div>
@@ -649,13 +538,8 @@ function MainPage(): JSX.Element {
             <div className="container">
               <div className="look-for-company__wrapper">
                 <div className="look-for-company__title-wrapper">
-                  <h2 className="look-for-company__title">
-                    Ищут компанию для тренировки
-                  </h2>
-                  <button
-                    className="btn-flat btn-flat--light look-for-company__button"
-                    type="button"
-                  >
+                  <h2 className="look-for-company__title">Ищут компанию для тренировки</h2>
+                  <button className="btn-flat btn-flat--light look-for-company__button" type="button">
                     <span>Смотреть все</span>
                     <svg width="14" height="10" aria-hidden="true">
                       <use xlinkHref="#arrow-right"></use>
@@ -711,9 +595,7 @@ function MainPage(): JSX.Element {
                           <svg width="14" height="16" aria-hidden="true">
                             <use xlinkHref="#icon-location"></use>
                           </svg>
-                          <address className="thumbnail-user__location-address">
-                            Невский проспект
-                          </address>
+                          <address className="thumbnail-user__location-address">Невский проспект</address>
                         </div>
                       </div>
                       <ul className="thumbnail-user__hashtags-list">
@@ -723,10 +605,7 @@ function MainPage(): JSX.Element {
                           </div>
                         </li>
                       </ul>
-                      <a
-                        className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button"
-                        href="#"
-                      >
+                      <a className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button" href="#">
                         Подробнее
                       </a>
                     </div>
@@ -754,9 +633,7 @@ function MainPage(): JSX.Element {
                           <svg width="14" height="16" aria-hidden="true">
                             <use xlinkHref="#icon-location"></use>
                           </svg>
-                          <address className="thumbnail-user__location-address">
-                            Комендантский проспект
-                          </address>
+                          <address className="thumbnail-user__location-address">Комендантский проспект</address>
                         </div>
                       </div>
                       <ul className="thumbnail-user__hashtags-list">
@@ -766,10 +643,7 @@ function MainPage(): JSX.Element {
                           </div>
                         </li>
                       </ul>
-                      <a
-                        className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button"
-                        href="#"
-                      >
+                      <a className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button" href="#">
                         Подробнее
                       </a>
                     </div>
@@ -797,9 +671,7 @@ function MainPage(): JSX.Element {
                           <svg width="14" height="16" aria-hidden="true">
                             <use xlinkHref="#icon-location"></use>
                           </svg>
-                          <address className="thumbnail-user__location-address">
-                            Чёрная речка
-                          </address>
+                          <address className="thumbnail-user__location-address">Чёрная речка</address>
                         </div>
                       </div>
                       <ul className="thumbnail-user__hashtags-list">
@@ -809,10 +681,7 @@ function MainPage(): JSX.Element {
                           </div>
                         </li>
                       </ul>
-                      <a
-                        className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button"
-                        href="#"
-                      >
+                      <a className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button" href="#">
                         Подробнее
                       </a>
                     </div>
@@ -845,9 +714,7 @@ function MainPage(): JSX.Element {
                           <svg width="14" height="16" aria-hidden="true">
                             <use xlinkHref="#icon-location"></use>
                           </svg>
-                          <address className="thumbnail-user__location-address">
-                            Крестовский остров
-                          </address>
+                          <address className="thumbnail-user__location-address">Крестовский остров</address>
                         </div>
                       </div>
                       <ul className="thumbnail-user__hashtags-list">
@@ -857,10 +724,7 @@ function MainPage(): JSX.Element {
                           </div>
                         </li>
                       </ul>
-                      <a
-                        className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button"
-                        href="#"
-                      >
+                      <a className="btn btn--outlined btn--dark-bg btn--medium thumbnail-user__button" href="#">
                         Подробнее
                       </a>
                     </div>

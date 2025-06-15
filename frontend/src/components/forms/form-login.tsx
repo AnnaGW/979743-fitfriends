@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AppRoute, Validation } from '../../const';
 import { useNavigate } from 'react-router-dom';
@@ -16,19 +16,18 @@ function LoginForm(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    //  if (email !== null && password !== null) {
-    //      dispatch(loginAction({
-    //        email: email,
-    //        password: password
-    //      }))
-    //      .then((serverRusult) => {
-    //       if (serverRusult.type === 'user/login/fulfilled') {
-    //         navigate(AppRoute.Main);
-    //       }
-    //     });
-    //  }
-    console.log('форма валидна');
-
+    if (email !== null && password !== null) {
+      dispatch(
+        loginAction({
+          email: email,
+          password: password,
+        })
+      ).then((serverRusult) => {
+        if (serverRusult.type === 'user/login/fulfilled') {
+          navigate(AppRoute.Main);
+        }
+      });
+    }
   };
 
   return (
@@ -48,7 +47,7 @@ function LoginForm(): JSX.Element {
                 onChange={(evt) => {
                   checkInputValidity(evt.target);
                   setEmail(evt.target.value);
-                  setEmailInvalid(!!evt.target.validity.valid)
+                  setEmailInvalid(!!evt.target.validity.valid);
                 }}
                 onBlur={(evt) => toggleInputError(evt.target)}
                 onFocus={(evt) => toggleErrorSpan(evt.target, '')}

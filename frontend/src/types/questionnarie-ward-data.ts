@@ -3,6 +3,8 @@ import { TrainingDuration } from './training-duration';
 import { TrainingLevel } from './training-level';
 
 export type TQuestionnarieWardData = {
+  userID: string;
+  email: string;
   trainingType: TrainingType;
   trainingDuration: TrainingDuration;
   trainingLevel: TrainingLevel;

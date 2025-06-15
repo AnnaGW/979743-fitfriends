@@ -28,6 +28,8 @@ export enum APIRoute {
   Registration = 'users-api/registration',
   Check = 'users-api/check-auth',
   SaveFile = 'files/upload',
+  UpdateCoach = 'users-api/update-coach',
+  UpdateWard = 'users-api/update-ward',
 }
 
 export enum AUTH_TOKEN {

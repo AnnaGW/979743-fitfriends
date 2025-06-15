@@ -6,21 +6,21 @@ import {
   Controller,
   Delete,
   Post,
+  Put,
   Req,
   UseFilters,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { CreateUserCommonDto, LoginUserDto } from '@backend/user';
+import {
+  CreateUserCommonDto,
+  LoginUserDto,
+  UpdateCoachDto,
+} from '@backend/user';
 
 import { ApplicationServiceURL } from './configuration/api.config';
 import { AxiosExceptionFilter } from './filters/axios-exception.filter';
-import { UserCommon } from '@backend/core';
-
-type savedFile = {
-  fileName: string;
-};
 
 @Controller('users-api')
 @UseFilters(AxiosExceptionFilter)
@@ -29,6 +29,7 @@ export class UsersApiController {
 
   @Post('login')
   public async login(@Body() loginUserDto: LoginUserDto) {
+    console.log('что пришло в контролер api - ', loginUserDto);
     const { data } = await this.httpService.axiosRef.post(
       `${ApplicationServiceURL.Users}/login`,
       loginUserDto
@@ -97,5 +98,15 @@ export class UsersApiController {
   @Delete('logout')
   public async logout(@Req() req: Request) {
     // отзыв refresh token в users
+  }
+
+  @Put('update-coach')
+  public async updateCoach(@Body() updatedUser: UpdateCoachDto) {
+    console.log('что пришло в контроллер api - ', updatedUser);
+    const { data } = await this.httpService.axiosRef.put(
+      `${ApplicationServiceURL.Users}/update-coach`,
+      updatedUser
+    );
+    return data;
   }
 }

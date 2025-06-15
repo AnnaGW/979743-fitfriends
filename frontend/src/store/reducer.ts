@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
-import { UserGender, UserLocation } from '../types';
+import { UserGender, UserLocation, UserRole } from '../types';
 import { TAuthProcess } from '../types/state';
-import { userInfo, setAuthorizationAction, serverErrorAction } from './action';
-import { loginAction, logoutAction, registrationAction, checkAuthAction } from './api-actions';
+import { serverErrorAction } from './action';
+import { loginAction, logoutAction, registrationAction, checkAuthAction, updateCoach } from './api-actions';
 
 const initialState: TAuthProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -18,19 +18,13 @@ const initialState: TAuthProcess = {
     location: UserLocation.Starry,
     refreshToken: '',
     accessToken: '',
+    role: UserRole.Ward,
   },
   error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setAuthorizationAction, (state, action) => {
-      state.authorizationStatus = action.payload;
-    })
-    .addCase(userInfo, (state, action) => {
-      state.authorizationStatus = AuthorizationStatus.Auth;
-      state.userInfo = action.payload;
-    })
     .addCase(loginAction.fulfilled, (state, action) => {
       state.userInfo = action.payload;
       state.authorizationStatus = AuthorizationStatus.Auth;
@@ -54,6 +48,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(checkAuthAction.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(updateCoach.fulfilled, (state, action) => {
+      state.userInfo = action.payload;
     })
     .addCase(serverErrorAction, (state, action) => {
       state.error = action.payload;
