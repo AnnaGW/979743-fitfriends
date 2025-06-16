@@ -41,7 +41,6 @@ function QuestionnaireCoachForm(): JSX.Element {
     let updatedCoach: TQuestionnarieCoachData;
 
     const questionnaireCoachData = {
-      userID: userInfo.id ?? '',
       email: userInfo.email ?? '',
       trainingType: trainingType,
       trainingLevel: trainingLevel,
@@ -64,14 +63,14 @@ function QuestionnaireCoachForm(): JSX.Element {
         ...questionnaireCoachData,
       };
     }
+    console.log('Что отправилось на сервер - ', updatedCoach);
 
     dispatch(updateCoach(updatedCoach)).then((serverResult) => {
       if (serverResult.type === 'user/updateCoach/fulfilled') {
-        navigate(AppRoute.Main);
+        console.log('что вернулось с сервера - ', serverResult.payload);
+        navigate(AppRoute.PersonalAccountCoach);
       }
     });
-
-    console.log('Что отправилось на сервер - ', updatedCoach);
   };
 
   return (

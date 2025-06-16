@@ -14,9 +14,6 @@ import {
 } from '../user.constant';
 
 export class UpdateCoachDto {
-  @IsString()
-  public userID: string;
-
   @IsEmail({}, { message: AuthenticationValidateMessage.EmailNotValid })
   @IsString()
   public email: string;

@@ -1,10 +1,8 @@
 import { TrainingType } from './training-type';
-import { TrainingLevel } from './training-level';
 
 export type TQuestionnarieCoachData = {
-  userID: string;
   email: string;
-  trainingType: string[];
+  trainingType: TrainingType[] | string[] | [];
   trainingLevel: string;
   description?: string;
   coachMerits: string;

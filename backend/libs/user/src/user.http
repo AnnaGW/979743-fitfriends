@@ -37,8 +37,7 @@ PUT http://localhost:3333/api/user/update-coach HTTP/1.1
 Content-Type: application/json
 
 {
-    "userID": "684724ad1a64ad200cc496df",
-    "email": "use33@new.local",
+    "email": "use02@new.local",
     "trainingType": [
         "йога",
         "бокс"
@@ -56,7 +55,6 @@ PUT http://localhost:3333/api/user/update-ward HTTP/1.1
 Content-Type: application/json
 
 {
-    "userID": "684829ff31f88851be32f33a",
     "email": "use339@new.local",
     "trainingType": [
         "йога",
@@ -71,7 +69,7 @@ Content-Type: application/json
 ###
 
 # Get user by ID
-GET http://localhost:3333/api/user/68069b3237a1d42f203fbcac HTTP/1.1
+GET http://localhost:3333/api/user/684e913062b18746af0cd549 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODA2OWIzMjM3YTFkNDJmMjAzZmJjYWMiLCJuYW1lIjoidXM2MCIsImVtYWlsIjoidXNlNjBAbmV3LmxvY2FsIiwiYXZhdGFyIjoiYXZhdGFyNjAuanBnIiwiZGF0ZU9mQmlydGgiOiIyMDA0LTA0LTI5VDE4OjAwOjAwLjAwMFoiLCJsb2NhdGlvbiI6ItCf0LjQvtC90LXRgNGB0LrQsNGPIiwiZ2VuZGVyIjoi0L3QtdCy0LDQttC90L4iLCJyb2xlIjoiY29hY2giLCJjcmVhdGVkQXQiOiIyMDI1LTA0LTIxVDE5OjIzOjMwLjUyOFoiLCJiYWNrZ3JvdW5kSW1nIjoiZGVmYXVsdC5wbmciLCJpYXQiOjE3NDU3ODE0ODIsImV4cCI6MTc0NTc4MjM4Mn0.wL5smvKCsJ5vK9HBXLLG1DKgnERZAUKd3HIeAuHezT0
 
 ###
@@ -81,15 +79,15 @@ POST http://localhost:3333/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "use60@new.local",
-  "password": "1254567890"
+  "email": "use02@new.local",
+  "password": "123456789"
 }
 
 ###
 
 # Get new JWT pair
 POST http://localhost:3333/api/user/refresh HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2RkYjJjYWQ0MDI0NjM1ZmNjMDZhNjUiLCJuYW1lIjoidXM1MyIsImVtYWlsIjoidXNlNTNAbmV3LmxvY2FsIiwiYXZhdGFyIjoiYXZhdGFyNTMuanBnIiwiZ2VuZGVyIjoi0LbQtdC90YHQutC40LkiLCJkYXRlT2ZCaXJ0aCI6IjIwMDQtMDQtMDRUMTg6MDA6MDAuMDAwWiIsImRlc2NyaXB0aW9uIjoiR2lybDUzIHJ0Z3J0ZyB0Z2FyeXl0aCB0cnIiLCJsb2NhdGlvbiI6ItCj0LTQtdC70YzQvdCw0Y8iLCJiYWNrZ3JvdW5kSW1nIjoiYmY1M3BuZyIsImNyZWF0ZWRBdCI6IjIwMjUtMDMtMjFUMTg6NDE6MTQuNDA3WiIsInRva2VuSWQiOiI3NzUyNDJiMS1hOGU5LTQzZTktYjZjZi05Y2QyNzM0ZjVlMjUiLCJpYXQiOjE3NDQ3MzkxNTAsImV4cCI6MTc0NTM0Mzk1MH0.2K4edXmZYlYdyVIab2GvLn59qi7aKxRkBTpuQsknCcU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODRlOTEzMDYyYjE4NzQ2YWYwY2Q1NDkiLCJuYW1lIjoi0JzQuNC70LAiLCJlbWFpbCI6InVzZTA2QG5ldy5sb2NhbCIsImRhdGVPZkJpcnRoIjoiMjAyNS0wNi0xNVQwOToyNDowMC4zODRaIiwibG9jYXRpb24iOiLQodC_0L7RgNGC0LjQstC90LDRjyIsImdlbmRlciI6ItC20LXQvdGB0LrQuNC5Iiwicm9sZSI6ImNvYWNoIiwiY3JlYXRlZEF0IjoiMjAyNS0wNi0xNVQwOToyNDowMC4zODVaIiwiYmFja2dyb3VuZEltZyI6ImRlZmF1bHQucG5nIiwidG9rZW5JZCI6IjBkM2I0ZTllLWQ2ZWMtNGE3NC05OTk2LTZlMjUzYTMzZWEyMCIsImlhdCI6MTc0OTk3OTQ0MCwiZXhwIjoxNzUwNTg0MjQwfQ.1MWuHZJ28oDBBSvRynd1wK68uaxi6mG6WHFHoV0Muzw
 
 ###
 

@@ -8,9 +8,10 @@ import { TUser } from '../types/user.js';
 import { TRegData } from '../types/reg-data.js';
 import { TQuestionnarieCoachData } from '../types/questionnarie-coach-data.js';
 import { TQuestionnarieWardData } from '../types/questionnarie-ward-data.js';
+import { TUserFull } from '../types/user-full.js';
 
 export const loginAction = createAsyncThunk<
-  TUser,
+  TUserFull,
   TAuthData,
   {
     dispatch: AppDispatch;
@@ -18,7 +19,7 @@ export const loginAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/login', async ({ email, password }, { extra: api }) => {
-  const { data } = await api.post<TUser>(APIRoute.Login, { email, password });
+  const { data } = await api.post<TUserFull>(APIRoute.Login, { email, password });
 
   saveToken({
     accessToken: data.accessToken,
@@ -59,7 +60,7 @@ export const registrationAction = createAsyncThunk<
 });
 
 export const checkAuthAction = createAsyncThunk<
-  TUser,
+  TUserFull,
   undefined,
   {
     dispatch: AppDispatch;
@@ -67,12 +68,12 @@ export const checkAuthAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/checkAuth', async (_arg, { extra: api }) => {
-  const { data } = await api.post<TUser>(APIRoute.Check);
+  const { data } = await api.post<TUserFull>(APIRoute.Check);
   return data;
 });
 
 export const updateCoach = createAsyncThunk<
-  TUser,
+  TUserFull,
   TQuestionnarieCoachData,
   {
     dispatch: AppDispatch;
@@ -80,7 +81,7 @@ export const updateCoach = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/updateCoach', async (updatedUser: TQuestionnarieCoachData, { extra: api }) => {
-  const { data } = await api.put<TUser>(APIRoute.UpdateCoach, updatedUser);
+  const { data } = await api.put<TUserFull>(APIRoute.UpdateCoach, updatedUser);
   return data;
 });
 

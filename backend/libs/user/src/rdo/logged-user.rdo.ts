@@ -29,7 +29,22 @@ export class LoggedUserRdo {
   public backgroundImg: string;
 
   @Expose()
+  public trainingType: string[];
+
+  @Expose()
   public accessToken: string;
+
+  @Expose()
+  public trainingLevel: string;
+
+  @Expose()
+  public coachMerits: string;
+
+  @Expose()
+  public certificates: string;
+
+  @Expose()
+  public trainingDuration: string;
 
   @Expose()
   public refreshToken: string;

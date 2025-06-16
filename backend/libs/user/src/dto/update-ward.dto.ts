@@ -10,9 +10,6 @@ import {
 import { TrainingDuration, TrainingLevel, TrainingType } from '@backend/core';
 import { AuthenticationValidateMessage } from '../user.constant';
 export class UpdateWardDto {
-  @IsString()
-  public userID: string;
-
   @IsEmail({}, { message: AuthenticationValidateMessage.EmailNotValid })
   @IsString()
   public email: string;

@@ -9,9 +9,11 @@ import Registration from '../../pages/registration/registration';
 import Error404 from '../../pages/error/error';
 import QuestionnaireWardPage from '../../pages/questionnaires/questionnaire-ward';
 import QuestionnaireCoachPage from '../../pages/questionnaires/questionnaire-coach';
+import PersonalAccountCoach from '../../pages/personal-accounts/pa-coach/personal-account-coach';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const userRole = useAppSelector((state) => state.userInfo.role);
 
   return (
     <HelmetProvider>
@@ -34,12 +36,10 @@ function App(): JSX.Element {
             path={AppRoute.QuestionnaireWard}
             element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-              <QuestionnaireWardPage />
-            </PrivateRoute>
+                <QuestionnaireWardPage />
+              </PrivateRoute>
             }
           />
-
-
 
           <Route
             path={AppRoute.QuestionnaireCoach}
@@ -50,8 +50,16 @@ function App(): JSX.Element {
             }
           />
 
+          <Route
+            path={AppRoute.PersonalAccountCoach}
+            element={
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <PersonalAccountCoach />
+              </PrivateRoute>
+            }
+          />
 
-          <Route path='*' element={<Error404 />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
