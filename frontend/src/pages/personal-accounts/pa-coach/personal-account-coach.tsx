@@ -7,7 +7,6 @@ import { useAppSelector } from '../../../hooks';
 function PersonalAccountCoach(): JSX.Element {
   const userInfo = useAppSelector((state) => state.userInfo);
   const coachInfo = useAppSelector((state) => state.coachInfo);
-  console.log('userInfo - ', { userInfo, coachInfo });
 
   const [editMode, setEditMode] = useState<boolean>(false);
 

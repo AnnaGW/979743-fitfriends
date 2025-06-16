@@ -40,7 +40,6 @@ export class UserController {
 
   @Put('update-coach')
   public async updateCoach(@Body() dto: UpdateCoachDto) {
-    console.log('что пришло в контроллер api - ', dto);
     const updatedUser = await this.userService.updateCoach(dto);
     return fillDto(UpdatedCoachRdo, { ...updatedUser });
   }

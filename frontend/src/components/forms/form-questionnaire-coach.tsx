@@ -63,11 +63,9 @@ function QuestionnaireCoachForm(): JSX.Element {
         ...questionnaireCoachData,
       };
     }
-    console.log('Что отправилось на сервер - ', updatedCoach);
 
     dispatch(updateCoach(updatedCoach)).then((serverResult) => {
       if (serverResult.type === 'user/updateCoach/fulfilled') {
-        console.log('что вернулось с сервера - ', serverResult.payload);
         navigate(AppRoute.PersonalAccountCoach);
       }
     });

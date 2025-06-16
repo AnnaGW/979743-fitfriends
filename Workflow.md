@@ -53,7 +53,7 @@ api - является точной входа для фронтэнда
 
 ##### запуск МС users
 
-Команды запуска МС выполняются в терминале из директории backend
+Команды запуска МС выполняются в терминале из директории `backend`
 
 ```bash
 npx nx run users:serve
@@ -67,15 +67,15 @@ docker compose --file ./apps/users/user-compose.dev.yml --project-name "fitfrien
 
 После завершения загрузки образов и подготовки контейнеров веб-интерфейс для администрирования MongoDB будет доступен по адресу http://localhost:8081/.
 
-переменные окружения в файле backend/apps/users/user.env
-пример в файле backend/apps/users/user.env-example
+переменные окружения в файле `backend/apps/users/user.env`
+пример в файле `backend/apps/users/user.env-example`
 
 Файл для тестирование запросов
-backend/libs/user/src/user.http
+`backend/libs/user/src/user.http`
 
 ##### запуск МС trainings
 
-Команды запуска МС выполняются в терминале из директории backend
+Команды запуска МС выполняются в терминале из директории `backend`
 
 ```bash
 npx nx run trainings:serve
@@ -89,11 +89,11 @@ docker compose --file ./apps/trainings/training-compose.dev.yml --project-name "
 
 После завершения загрузки образов и подготовки контейнеров веб-интерфейс для администрирования MongoDB будет доступен по адресу http://localhost:8084/.
 
-переменные окружения в файле backend/apps/trainings/trainings.env
-пример в файле backend/apps/trainings/trainings.env-example
+переменные окружения в файле `backend/apps/trainings/trainings.env`
+пример в файле `backend/apps/trainings/trainings.env-example`
 
 Файл для тестирование запросов
-backend/libs/training/src/training.http
+`backend/libs/training/src/training.http`
 
 ##### запуск МС files
 
@@ -111,11 +111,11 @@ docker compose --file ./apps/files/file-compose.dev.yml  --project-name "fitfrie
 
 После завершения загрузки образов и подготовки контейнеров веб-интерфейс для администрирования MongoDB будет доступен по адресу http://localhost:8085/.
 
-переменные окружения в файле backend/apps/files/file.env
-пример в файле backend/apps/files/file.env-example
+переменные окружения в файле `backend/apps/files/file.env`
+пример в файле `backend/apps/files/file.env-example`
 
 Файл для тестирование запросов
-backend/libs/file-uploader/src/file-uploader.http
+`backend/libs/file-uploader/src/file-uploader.http`
 
 ##### запуск МС api
 
@@ -125,17 +125,17 @@ backend/libs/file-uploader/src/file-uploader.http
 npx nx run api:serve
 ```
 
-переменные окружения в файле backend/apps/api/api.env
-пример в файле backend/apps/api/api.env-example
+переменные окружения в файле `backend/apps/api/api.env`
+пример в файле `backend/apps/api/api.env-example`
 
-Значения переменных окружения USERS_URL и TRAINING_URL должны соответствовать значеиям переменных PORT в файлах user.env и trainings.env
+!! Порты в переменных окружения МС api USERS_URL и TRAINING_URL должны соответствовать значениям переменных PORT в файлах user.env и trainings.env
 
 Файл для тестирование запросов
-backend/apps/api/src/app/api.http
+`backend/apps/api/src/app/api.http`
 
 ##### запуск фронтэнда
 
-команда выполняется в терминале из директории frontend
+команда выполняется в терминале из директории `frontend`
 
 ```bash
 npm run start
@@ -155,4 +155,5 @@ npm run lint
 
 ### Остальное
 
-Проект реализован не полностью
+Проект реализован не полностью.
+Подробнее в README.md

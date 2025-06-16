@@ -38,7 +38,6 @@ function getConfig(): ApiConfig {
     environment: process.env.NODE_ENV as Environment,
     port: parseInt(process.env.PORT || `${DEFAULT_PORT}`, 10),
   };
-  console.log('process.env.PORT', config.port);
   validateConfig(config);
   return config;
 }

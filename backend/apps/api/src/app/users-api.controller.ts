@@ -29,7 +29,6 @@ export class UsersApiController {
 
   @Post('login')
   public async login(@Body() loginUserDto: LoginUserDto) {
-    console.log('что пришло в контролер api - ', loginUserDto);
     const { data } = await this.httpService.axiosRef.post(
       `${ApplicationServiceURL.Users}/login`,
       loginUserDto
@@ -102,7 +101,6 @@ export class UsersApiController {
 
   @Put('update-coach')
   public async updateCoach(@Body() updatedUser: UpdateCoachDto) {
-    console.log('что пришло в контроллер api - ', updatedUser);
     const { data } = await this.httpService.axiosRef.put(
       `${ApplicationServiceURL.Users}/update-coach`,
       updatedUser
